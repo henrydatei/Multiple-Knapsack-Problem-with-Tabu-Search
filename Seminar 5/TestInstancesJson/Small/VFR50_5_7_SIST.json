@@ -1,0 +1,957 @@
+{
+    "Name": "VFR50_5_7_SIST",
+    "nMachines": 5,
+    "nJobs": 50,
+    "Jobs": [
+        {
+            "Id": 1,
+            "SetupTimes": [
+                4,
+                5,
+                7,
+                15,
+                15
+            ],
+            "ProcessingTimes": [
+                10,
+                55,
+                19,
+                40,
+                36
+            ],
+            "DueDate": 202,
+            "TardCosts": 70
+        },
+        {
+            "Id": 2,
+            "SetupTimes": [
+                11,
+                13,
+                8,
+                4,
+                10
+            ],
+            "ProcessingTimes": [
+                97,
+                29,
+                55,
+                33,
+                24
+            ],
+            "DueDate": 339,
+            "TardCosts": 80
+        },
+        {
+            "Id": 3,
+            "SetupTimes": [
+                42,
+                4,
+                31,
+                3,
+                23
+            ],
+            "ProcessingTimes": [
+                97,
+                11,
+                80,
+                24,
+                53
+            ],
+            "DueDate": 514,
+            "TardCosts": 110
+        },
+        {
+            "Id": 4,
+            "SetupTimes": [
+                32,
+                4,
+                12,
+                12,
+                10
+            ],
+            "ProcessingTimes": [
+                86,
+                21,
+                74,
+                34,
+                60
+            ],
+            "DueDate": 367,
+            "TardCosts": 60
+        },
+        {
+            "Id": 5,
+            "SetupTimes": [
+                7,
+                7,
+                22,
+                4,
+                11
+            ],
+            "ProcessingTimes": [
+                46,
+                68,
+                57,
+                23,
+                46
+            ],
+            "DueDate": 402,
+            "TardCosts": 100
+        },
+        {
+            "Id": 6,
+            "SetupTimes": [
+                30,
+                11,
+                29,
+                11,
+                27
+            ],
+            "ProcessingTimes": [
+                84,
+                39,
+                68,
+                78,
+                56
+            ],
+            "DueDate": 531,
+            "TardCosts": 110
+        },
+        {
+            "Id": 7,
+            "SetupTimes": [
+                12,
+                23,
+                12,
+                17,
+                13
+            ],
+            "ProcessingTimes": [
+                43,
+                73,
+                40,
+                41,
+                32
+            ],
+            "DueDate": 417,
+            "TardCosts": 130
+        },
+        {
+            "Id": 8,
+            "SetupTimes": [
+                15,
+                10,
+                6,
+                15,
+                16
+            ],
+            "ProcessingTimes": [
+                52,
+                41,
+                27,
+                56,
+                42
+            ],
+            "DueDate": 390,
+            "TardCosts": 120
+        },
+        {
+            "Id": 9,
+            "SetupTimes": [
+                6,
+                30,
+                0,
+                6,
+                4
+            ],
+            "ProcessingTimes": [
+                19,
+                95,
+                5,
+                59,
+                35
+            ],
+            "DueDate": 219,
+            "TardCosts": 80
+        },
+        {
+            "Id": 10,
+            "SetupTimes": [
+                19,
+                2,
+                18,
+                20,
+                25
+            ],
+            "ProcessingTimes": [
+                46,
+                7,
+                42,
+                47,
+                66
+            ],
+            "DueDate": 356,
+            "TardCosts": 140
+        },
+        {
+            "Id": 11,
+            "SetupTimes": [
+                8,
+                24,
+                21,
+                21,
+                27
+            ],
+            "ProcessingTimes": [
+                53,
+                52,
+                51,
+                60,
+                74
+            ],
+            "DueDate": 352,
+            "TardCosts": 70
+        },
+        {
+            "Id": 12,
+            "SetupTimes": [
+                3,
+                9,
+                2,
+                0,
+                1
+            ],
+            "ProcessingTimes": [
+                13,
+                29,
+                10,
+                3,
+                6
+            ],
+            "DueDate": 91,
+            "TardCosts": 160
+        },
+        {
+            "Id": 13,
+            "SetupTimes": [
+                26,
+                6,
+                37,
+                21,
+                13
+            ],
+            "ProcessingTimes": [
+                54,
+                15,
+                94,
+                46,
+                34
+            ],
+            "DueDate": 317,
+            "TardCosts": 190
+        },
+        {
+            "Id": 14,
+            "SetupTimes": [
+                13,
+                0,
+                2,
+                26,
+                9
+            ],
+            "ProcessingTimes": [
+                33,
+                3,
+                14,
+                97,
+                28
+            ],
+            "DueDate": 310,
+            "TardCosts": 70
+        },
+        {
+            "Id": 15,
+            "SetupTimes": [
+                8,
+                8,
+                17,
+                27,
+                6
+            ],
+            "ProcessingTimes": [
+                19,
+                16,
+                52,
+                76,
+                15
+            ],
+            "DueDate": 228,
+            "TardCosts": 60
+        },
+        {
+            "Id": 16,
+            "SetupTimes": [
+                36,
+                19,
+                3,
+                14,
+                8
+            ],
+            "ProcessingTimes": [
+                94,
+                70,
+                21,
+                71,
+                16
+            ],
+            "DueDate": 482,
+            "TardCosts": 150
+        },
+        {
+            "Id": 17,
+            "SetupTimes": [
+                9,
+                18,
+                32,
+                1,
+                10
+            ],
+            "ProcessingTimes": [
+                79,
+                42,
+                69,
+                6,
+                69
+            ],
+            "DueDate": 398,
+            "TardCosts": 160
+        },
+        {
+            "Id": 18,
+            "SetupTimes": [
+                0,
+                7,
+                3,
+                5,
+                37
+            ],
+            "ProcessingTimes": [
+                3,
+                68,
+                6,
+                34,
+                84
+            ],
+            "DueDate": 207,
+            "TardCosts": 150
+        },
+        {
+            "Id": 19,
+            "SetupTimes": [
+                6,
+                27,
+                5,
+                3,
+                18
+            ],
+            "ProcessingTimes": [
+                14,
+                71,
+                14,
+                13,
+                36
+            ],
+            "DueDate": 226,
+            "TardCosts": 80
+        },
+        {
+            "Id": 20,
+            "SetupTimes": [
+                10,
+                2,
+                10,
+                16,
+                0
+            ],
+            "ProcessingTimes": [
+                54,
+                10,
+                54,
+                40,
+                3
+            ],
+            "DueDate": 189,
+            "TardCosts": 60
+        },
+        {
+            "Id": 21,
+            "SetupTimes": [
+                15,
+                1,
+                19,
+                0,
+                16
+            ],
+            "ProcessingTimes": [
+                81,
+                18,
+                96,
+                3,
+                53
+            ],
+            "DueDate": 241,
+            "TardCosts": 60
+        },
+        {
+            "Id": 22,
+            "SetupTimes": [
+                0,
+                34,
+                10,
+                25,
+                16
+            ],
+            "ProcessingTimes": [
+                2,
+                84,
+                37,
+                81,
+                68
+            ],
+            "DueDate": 429,
+            "TardCosts": 50
+        },
+        {
+            "Id": 23,
+            "SetupTimes": [
+                10,
+                4,
+                19,
+                6,
+                9
+            ],
+            "ProcessingTimes": [
+                42,
+                24,
+                75,
+                33,
+                25
+            ],
+            "DueDate": 256,
+            "TardCosts": 70
+        },
+        {
+            "Id": 24,
+            "SetupTimes": [
+                11,
+                9,
+                4,
+                31,
+                15
+            ],
+            "ProcessingTimes": [
+                77,
+                55,
+                8,
+                89,
+                90
+            ],
+            "DueDate": 532,
+            "TardCosts": 90
+        },
+        {
+            "Id": 25,
+            "SetupTimes": [
+                41,
+                3,
+                5,
+                13,
+                4
+            ],
+            "ProcessingTimes": [
+                96,
+                25,
+                40,
+                38,
+                8
+            ],
+            "DueDate": 240,
+            "TardCosts": 80
+        },
+        {
+            "Id": 26,
+            "SetupTimes": [
+                13,
+                5,
+                8,
+                4,
+                36
+            ],
+            "ProcessingTimes": [
+                40,
+                13,
+                49,
+                16,
+                92
+            ],
+            "DueDate": 372,
+            "TardCosts": 160
+        },
+        {
+            "Id": 27,
+            "SetupTimes": [
+                13,
+                33,
+                21,
+                7,
+                17
+            ],
+            "ProcessingTimes": [
+                71,
+                97,
+                76,
+                54,
+                62
+            ],
+            "DueDate": 518,
+            "TardCosts": 200
+        },
+        {
+            "Id": 28,
+            "SetupTimes": [
+                2,
+                10,
+                7,
+                12,
+                20
+            ],
+            "ProcessingTimes": [
+                5,
+                23,
+                19,
+                42,
+                61
+            ],
+            "DueDate": 203,
+            "TardCosts": 130
+        },
+        {
+            "Id": 29,
+            "SetupTimes": [
+                4,
+                47,
+                10,
+                2,
+                5
+            ],
+            "ProcessingTimes": [
+                26,
+                99,
+                61,
+                5,
+                28
+            ],
+            "DueDate": 385,
+            "TardCosts": 110
+        },
+        {
+            "Id": 30,
+            "SetupTimes": [
+                14,
+                40,
+                5,
+                36,
+                10
+            ],
+            "ProcessingTimes": [
+                35,
+                83,
+                20,
+                72,
+                27
+            ],
+            "DueDate": 381,
+            "TardCosts": 190
+        },
+        {
+            "Id": 31,
+            "SetupTimes": [
+                19,
+                14,
+                3,
+                6,
+                2
+            ],
+            "ProcessingTimes": [
+                82,
+                34,
+                35,
+                61,
+                19
+            ],
+            "DueDate": 259,
+            "TardCosts": 140
+        },
+        {
+            "Id": 32,
+            "SetupTimes": [
+                10,
+                13,
+                7,
+                4,
+                1
+            ],
+            "ProcessingTimes": [
+                29,
+                44,
+                78,
+                11,
+                12
+            ],
+            "DueDate": 261,
+            "TardCosts": 190
+        },
+        {
+            "Id": 33,
+            "SetupTimes": [
+                13,
+                0,
+                17,
+                19,
+                22
+            ],
+            "ProcessingTimes": [
+                37,
+                1,
+                45,
+                80,
+                74
+            ],
+            "DueDate": 310,
+            "TardCosts": 170
+        },
+        {
+            "Id": 34,
+            "SetupTimes": [
+                12,
+                29,
+                1,
+                18,
+                31
+            ],
+            "ProcessingTimes": [
+                33,
+                83,
+                4,
+                47,
+                88
+            ],
+            "DueDate": 315,
+            "TardCosts": 120
+        },
+        {
+            "Id": 35,
+            "SetupTimes": [
+                12,
+                33,
+                2,
+                6,
+                2
+            ],
+            "ProcessingTimes": [
+                84,
+                91,
+                14,
+                15,
+                13
+            ],
+            "DueDate": 338,
+            "TardCosts": 70
+        },
+        {
+            "Id": 36,
+            "SetupTimes": [
+                7,
+                28,
+                0,
+                3,
+                17
+            ],
+            "ProcessingTimes": [
+                28,
+                61,
+                7,
+                30,
+                91
+            ],
+            "DueDate": 280,
+            "TardCosts": 200
+        },
+        {
+            "Id": 37,
+            "SetupTimes": [
+                29,
+                21,
+                28,
+                9,
+                23
+            ],
+            "ProcessingTimes": [
+                90,
+                52,
+                88,
+                78,
+                51
+            ],
+            "DueDate": 498,
+            "TardCosts": 50
+        },
+        {
+            "Id": 38,
+            "SetupTimes": [
+                14,
+                14,
+                10,
+                20,
+                42
+            ],
+            "ProcessingTimes": [
+                38,
+                57,
+                21,
+                91,
+                95
+            ],
+            "DueDate": 490,
+            "TardCosts": 180
+        },
+        {
+            "Id": 39,
+            "SetupTimes": [
+                24,
+                16,
+                39,
+                17,
+                5
+            ],
+            "ProcessingTimes": [
+                64,
+                46,
+                87,
+                94,
+                30
+            ],
+            "DueDate": 510,
+            "TardCosts": 60
+        },
+        {
+            "Id": 40,
+            "SetupTimes": [
+                14,
+                17,
+                27,
+                7,
+                15
+            ],
+            "ProcessingTimes": [
+                34,
+                73,
+                89,
+                25,
+                53
+            ],
+            "DueDate": 344,
+            "TardCosts": 80
+        },
+        {
+            "Id": 41,
+            "SetupTimes": [
+                45,
+                9,
+                7,
+                1,
+                7
+            ],
+            "ProcessingTimes": [
+                92,
+                88,
+                79,
+                5,
+                16
+            ],
+            "DueDate": 299,
+            "TardCosts": 70
+        },
+        {
+            "Id": 42,
+            "SetupTimes": [
+                0,
+                6,
+                38,
+                3,
+                17
+            ],
+            "ProcessingTimes": [
+                2,
+                29,
+                86,
+                32,
+                71
+            ],
+            "DueDate": 241,
+            "TardCosts": 140
+        },
+        {
+            "Id": 43,
+            "SetupTimes": [
+                12,
+                5,
+                18,
+                5,
+                21
+            ],
+            "ProcessingTimes": [
+                68,
+                50,
+                89,
+                13,
+                45
+            ],
+            "DueDate": 401,
+            "TardCosts": 90
+        },
+        {
+            "Id": 44,
+            "SetupTimes": [
+                22,
+                7,
+                2,
+                9,
+                5
+            ],
+            "ProcessingTimes": [
+                44,
+                30,
+                12,
+                34,
+                41
+            ],
+            "DueDate": 203,
+            "TardCosts": 80
+        },
+        {
+            "Id": 45,
+            "SetupTimes": [
+                15,
+                7,
+                8,
+                12,
+                7
+            ],
+            "ProcessingTimes": [
+                71,
+                51,
+                53,
+                86,
+                16
+            ],
+            "DueDate": 428,
+            "TardCosts": 120
+        },
+        {
+            "Id": 46,
+            "SetupTimes": [
+                12,
+                6,
+                10,
+                22,
+                15
+            ],
+            "ProcessingTimes": [
+                54,
+                17,
+                40,
+                83,
+                98
+            ],
+            "DueDate": 310,
+            "TardCosts": 70
+        },
+        {
+            "Id": 47,
+            "SetupTimes": [
+                17,
+                28,
+                5,
+                1,
+                29
+            ],
+            "ProcessingTimes": [
+                44,
+                86,
+                10,
+                9,
+                65
+            ],
+            "DueDate": 290,
+            "TardCosts": 140
+        },
+        {
+            "Id": 48,
+            "SetupTimes": [
+                6,
+                25,
+                15,
+                28,
+                13
+            ],
+            "ProcessingTimes": [
+                29,
+                60,
+                40,
+                86,
+                99
+            ],
+            "DueDate": 368,
+            "TardCosts": 160
+        },
+        {
+            "Id": 49,
+            "SetupTimes": [
+                5,
+                7,
+                5,
+                20,
+                25
+            ],
+            "ProcessingTimes": [
+                30,
+                16,
+                22,
+                54,
+                54
+            ],
+            "DueDate": 198,
+            "TardCosts": 80
+        },
+        {
+            "Id": 50,
+            "SetupTimes": [
+                15,
+                38,
+                6,
+                16,
+                23
+            ],
+            "ProcessingTimes": [
+                76,
+                82,
+                27,
+                36,
+                57
+            ],
+            "DueDate": 438,
+            "TardCosts": 50
+        }
+    ]
+}

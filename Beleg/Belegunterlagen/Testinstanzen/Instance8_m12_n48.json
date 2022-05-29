@@ -1,0 +1,309 @@
+{
+  "NumKnapSacks": 12,
+  "NumItems": 48,
+  "KnapSacks": [
+    {
+      "Id": 0,
+      "Capacity": 969,
+      "Penalty": 3
+    },
+    {
+      "Id": 1,
+      "Capacity": 815,
+      "Penalty": 3
+    },
+    {
+      "Id": 2,
+      "Capacity": 1092,
+      "Penalty": 4
+    },
+    {
+      "Id": 3,
+      "Capacity": 1103,
+      "Penalty": 4
+    },
+    {
+      "Id": 4,
+      "Capacity": 1042,
+      "Penalty": 3
+    },
+    {
+      "Id": 5,
+      "Capacity": 784,
+      "Penalty": 4
+    },
+    {
+      "Id": 6,
+      "Capacity": 787,
+      "Penalty": 3
+    },
+    {
+      "Id": 7,
+      "Capacity": 844,
+      "Penalty": 4
+    },
+    {
+      "Id": 8,
+      "Capacity": 1077,
+      "Penalty": 3
+    },
+    {
+      "Id": 9,
+      "Capacity": 1038,
+      "Penalty": 4
+    },
+    {
+      "Id": 10,
+      "Capacity": 1100,
+      "Penalty": 4
+    },
+    {
+      "Id": 11,
+      "Capacity": 697,
+      "Penalty": 3
+    }
+  ],
+  "Items": [
+    {
+      "Id": 0,
+      "Weight": 1029,
+      "Profit": 87
+    },
+    {
+      "Id": 1,
+      "Weight": 484,
+      "Profit": 683
+    },
+    {
+      "Id": 2,
+      "Weight": 491,
+      "Profit": 296
+    },
+    {
+      "Id": 3,
+      "Weight": 594,
+      "Profit": 323
+    },
+    {
+      "Id": 4,
+      "Weight": 698,
+      "Profit": 577
+    },
+    {
+      "Id": 5,
+      "Weight": 465,
+      "Profit": 394
+    },
+    {
+      "Id": 6,
+      "Weight": 1099,
+      "Profit": 74
+    },
+    {
+      "Id": 7,
+      "Weight": 1068,
+      "Profit": 206
+    },
+    {
+      "Id": 8,
+      "Weight": 1063,
+      "Profit": 99
+    },
+    {
+      "Id": 9,
+      "Weight": 850,
+      "Profit": 579
+    },
+    {
+      "Id": 10,
+      "Weight": 1019,
+      "Profit": 124
+    },
+    {
+      "Id": 11,
+      "Weight": 696,
+      "Profit": 891
+    },
+    {
+      "Id": 12,
+      "Weight": 379,
+      "Profit": 711
+    },
+    {
+      "Id": 13,
+      "Weight": 471,
+      "Profit": 257
+    },
+    {
+      "Id": 14,
+      "Weight": 1047,
+      "Profit": 925
+    },
+    {
+      "Id": 15,
+      "Weight": 397,
+      "Profit": 623
+    },
+    {
+      "Id": 16,
+      "Weight": 502,
+      "Profit": 118
+    },
+    {
+      "Id": 17,
+      "Weight": 458,
+      "Profit": 184
+    },
+    {
+      "Id": 18,
+      "Weight": 584,
+      "Profit": 200
+    },
+    {
+      "Id": 19,
+      "Weight": 655,
+      "Profit": 92
+    },
+    {
+      "Id": 20,
+      "Weight": 410,
+      "Profit": 143
+    },
+    {
+      "Id": 21,
+      "Weight": 705,
+      "Profit": 253
+    },
+    {
+      "Id": 22,
+      "Weight": 545,
+      "Profit": 280
+    },
+    {
+      "Id": 23,
+      "Weight": 726,
+      "Profit": 886
+    },
+    {
+      "Id": 24,
+      "Weight": 438,
+      "Profit": 133
+    },
+    {
+      "Id": 25,
+      "Weight": 580,
+      "Profit": 984
+    },
+    {
+      "Id": 26,
+      "Weight": 482,
+      "Profit": 647
+    },
+    {
+      "Id": 27,
+      "Weight": 758,
+      "Profit": 378
+    },
+    {
+      "Id": 28,
+      "Weight": 831,
+      "Profit": 626
+    },
+    {
+      "Id": 29,
+      "Weight": 505,
+      "Profit": 891
+    },
+    {
+      "Id": 30,
+      "Weight": 666,
+      "Profit": 744
+    },
+    {
+      "Id": 31,
+      "Weight": 990,
+      "Profit": 90
+    },
+    {
+      "Id": 32,
+      "Weight": 408,
+      "Profit": 219
+    },
+    {
+      "Id": 33,
+      "Weight": 1011,
+      "Profit": 602
+    },
+    {
+      "Id": 34,
+      "Weight": 368,
+      "Profit": 302
+    },
+    {
+      "Id": 35,
+      "Weight": 374,
+      "Profit": 399
+    },
+    {
+      "Id": 36,
+      "Weight": 656,
+      "Profit": 657
+    },
+    {
+      "Id": 37,
+      "Weight": 821,
+      "Profit": 79
+    },
+    {
+      "Id": 38,
+      "Weight": 635,
+      "Profit": 887
+    },
+    {
+      "Id": 39,
+      "Weight": 766,
+      "Profit": 988
+    },
+    {
+      "Id": 40,
+      "Weight": 761,
+      "Profit": 762
+    },
+    {
+      "Id": 41,
+      "Weight": 435,
+      "Profit": 590
+    },
+    {
+      "Id": 42,
+      "Weight": 1013,
+      "Profit": 950
+    },
+    {
+      "Id": 43,
+      "Weight": 490,
+      "Profit": 446
+    },
+    {
+      "Id": 44,
+      "Weight": 485,
+      "Profit": 615
+    },
+    {
+      "Id": 45,
+      "Weight": 713,
+      "Profit": 395
+    },
+    {
+      "Id": 46,
+      "Weight": 509,
+      "Profit": 734
+    },
+    {
+      "Id": 47,
+      "Weight": 534,
+      "Profit": 573
+    }
+  ],
+  "Origin": "random12_48_4_1000_1_12.txt"
+}

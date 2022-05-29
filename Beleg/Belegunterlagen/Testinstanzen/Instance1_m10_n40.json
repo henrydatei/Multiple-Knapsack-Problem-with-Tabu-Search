@@ -1,0 +1,259 @@
+{
+  "NumKnapSacks": 10,
+  "NumItems": 40,
+  "KnapSacks": [
+    {
+      "Id": 0,
+      "Capacity": 1900,
+      "Penalty": 4
+    },
+    {
+      "Id": 1,
+      "Capacity": 1785,
+      "Penalty": 3
+    },
+    {
+      "Id": 2,
+      "Capacity": 1717,
+      "Penalty": 4
+    },
+    {
+      "Id": 3,
+      "Capacity": 1691,
+      "Penalty": 3
+    },
+    {
+      "Id": 4,
+      "Capacity": 1004,
+      "Penalty": 3
+    },
+    {
+      "Id": 5,
+      "Capacity": 632,
+      "Penalty": 3
+    },
+    {
+      "Id": 6,
+      "Capacity": 523,
+      "Penalty": 4
+    },
+    {
+      "Id": 7,
+      "Capacity": 509,
+      "Penalty": 4
+    },
+    {
+      "Id": 8,
+      "Capacity": 461,
+      "Penalty": 4
+    },
+    {
+      "Id": 9,
+      "Capacity": 120,
+      "Penalty": 4
+    }
+  ],
+  "Items": [
+    {
+      "Id": 0,
+      "Weight": 1453,
+      "Profit": 420
+    },
+    {
+      "Id": 1,
+      "Weight": 1878,
+      "Profit": 443
+    },
+    {
+      "Id": 2,
+      "Weight": 755,
+      "Profit": 533
+    },
+    {
+      "Id": 3,
+      "Weight": 669,
+      "Profit": 546
+    },
+    {
+      "Id": 4,
+      "Weight": 1853,
+      "Profit": 667
+    },
+    {
+      "Id": 5,
+      "Weight": 369,
+      "Profit": 855
+    },
+    {
+      "Id": 6,
+      "Weight": 1485,
+      "Profit": 909
+    },
+    {
+      "Id": 7,
+      "Weight": 376,
+      "Profit": 941
+    },
+    {
+      "Id": 8,
+      "Weight": 382,
+      "Profit": 955
+    },
+    {
+      "Id": 9,
+      "Weight": 784,
+      "Profit": 994
+    },
+    {
+      "Id": 10,
+      "Weight": 700,
+      "Profit": 997
+    },
+    {
+      "Id": 11,
+      "Weight": 728,
+      "Profit": 1002
+    },
+    {
+      "Id": 12,
+      "Weight": 1054,
+      "Profit": 1034
+    },
+    {
+      "Id": 13,
+      "Weight": 1713,
+      "Profit": 1108
+    },
+    {
+      "Id": 14,
+      "Weight": 755,
+      "Profit": 1137
+    },
+    {
+      "Id": 15,
+      "Weight": 623,
+      "Profit": 1237
+    },
+    {
+      "Id": 16,
+      "Weight": 1140,
+      "Profit": 1314
+    },
+    {
+      "Id": 17,
+      "Weight": 1655,
+      "Profit": 1380
+    },
+    {
+      "Id": 18,
+      "Weight": 1663,
+      "Profit": 1383
+    },
+    {
+      "Id": 19,
+      "Weight": 817,
+      "Profit": 1397
+    },
+    {
+      "Id": 20,
+      "Weight": 1250,
+      "Profit": 410
+    },
+    {
+      "Id": 21,
+      "Weight": 636,
+      "Profit": 442
+    },
+    {
+      "Id": 22,
+      "Weight": 932,
+      "Profit": 618
+    },
+    {
+      "Id": 23,
+      "Weight": 1758,
+      "Profit": 627
+    },
+    {
+      "Id": 24,
+      "Weight": 1288,
+      "Profit": 634
+    },
+    {
+      "Id": 25,
+      "Weight": 1339,
+      "Profit": 645
+    },
+    {
+      "Id": 26,
+      "Weight": 801,
+      "Profit": 659
+    },
+    {
+      "Id": 27,
+      "Weight": 867,
+      "Profit": 726
+    },
+    {
+      "Id": 28,
+      "Weight": 705,
+      "Profit": 802
+    },
+    {
+      "Id": 29,
+      "Weight": 343,
+      "Profit": 810
+    },
+    {
+      "Id": 30,
+      "Weight": 1257,
+      "Profit": 827
+    },
+    {
+      "Id": 31,
+      "Weight": 931,
+      "Profit": 916
+    },
+    {
+      "Id": 32,
+      "Weight": 468,
+      "Profit": 953
+    },
+    {
+      "Id": 33,
+      "Weight": 1147,
+      "Profit": 1015
+    },
+    {
+      "Id": 34,
+      "Weight": 1079,
+      "Profit": 1034
+    },
+    {
+      "Id": 35,
+      "Weight": 1665,
+      "Profit": 1210
+    },
+    {
+      "Id": 36,
+      "Weight": 1681,
+      "Profit": 1220
+    },
+    {
+      "Id": 37,
+      "Weight": 1135,
+      "Profit": 1291
+    },
+    {
+      "Id": 38,
+      "Weight": 229,
+      "Profit": 1297
+    },
+    {
+      "Id": 39,
+      "Weight": 1526,
+      "Profit": 1303
+    }
+  ],
+  "Origin": "probT1_2S_R50_T002_M010_N0040_seed06.txt"
+}

@@ -1,0 +1,197 @@
+{
+    "Name": "VFR10_5_1_SIST",
+    "nMachines": 5,
+    "nJobs": 10,
+    "Jobs": [
+        {
+            "Id": 1,
+            "SetupTimes": [
+                8,
+                3,
+                27,
+                14,
+                16
+            ],
+            "ProcessingTimes": [
+                45,
+                31,
+                54,
+                54,
+                64
+            ],
+            "DueDate": 286,
+            "TardCosts": 160
+        },
+        {
+            "Id": 2,
+            "SetupTimes": [
+                18,
+                2,
+                26,
+                25,
+                20
+            ],
+            "ProcessingTimes": [
+                44,
+                7,
+                52,
+                66,
+                57
+            ],
+            "DueDate": 371,
+            "TardCosts": 130
+        },
+        {
+            "Id": 3,
+            "SetupTimes": [
+                3,
+                5,
+                18,
+                13,
+                11
+            ],
+            "ProcessingTimes": [
+                26,
+                19,
+                65,
+                34,
+                27
+            ],
+            "DueDate": 180,
+            "TardCosts": 120
+        },
+        {
+            "Id": 4,
+            "SetupTimes": [
+                37,
+                16,
+                12,
+                11,
+                11
+            ],
+            "ProcessingTimes": [
+                74,
+                83,
+                94,
+                76,
+                60
+            ],
+            "DueDate": 487,
+            "TardCosts": 150
+        },
+        {
+            "Id": 5,
+            "SetupTimes": [
+                9,
+                18,
+                15,
+                14,
+                4
+            ],
+            "ProcessingTimes": [
+                19,
+                41,
+                31,
+                50,
+                33
+            ],
+            "DueDate": 260,
+            "TardCosts": 60
+        },
+        {
+            "Id": 6,
+            "SetupTimes": [
+                3,
+                4,
+                10,
+                22,
+                6
+            ],
+            "ProcessingTimes": [
+                20,
+                28,
+                42,
+                63,
+                29
+            ],
+            "DueDate": 296,
+            "TardCosts": 140
+        },
+        {
+            "Id": 7,
+            "SetupTimes": [
+                6,
+                6,
+                5,
+                11,
+                5
+            ],
+            "ProcessingTimes": [
+                23,
+                30,
+                10,
+                27,
+                26
+            ],
+            "DueDate": 185,
+            "TardCosts": 110
+        },
+        {
+            "Id": 8,
+            "SetupTimes": [
+                14,
+                1,
+                5,
+                0,
+                13
+            ],
+            "ProcessingTimes": [
+                46,
+                19,
+                11,
+                5,
+                36
+            ],
+            "DueDate": 120,
+            "TardCosts": 110
+        },
+        {
+            "Id": 9,
+            "SetupTimes": [
+                25,
+                28,
+                10,
+                1,
+                24
+            ],
+            "ProcessingTimes": [
+                76,
+                76,
+                34,
+                6,
+                91
+            ],
+            "DueDate": 509,
+            "TardCosts": 130
+        },
+        {
+            "Id": 10,
+            "SetupTimes": [
+                7,
+                4,
+                4,
+                3,
+                9
+            ],
+            "ProcessingTimes": [
+                57,
+                31,
+                33,
+                8,
+                19
+            ],
+            "DueDate": 191,
+            "TardCosts": 160
+        }
+    ]
+}
