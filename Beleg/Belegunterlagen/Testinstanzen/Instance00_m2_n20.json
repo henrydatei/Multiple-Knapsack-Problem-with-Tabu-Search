@@ -1,0 +1,119 @@
+{
+  "NumKnapSacks": 2,
+  "NumItems": 20,
+  "KnapSacks": [
+    {
+      "Id": 0,
+      "Capacity": 444,
+      "Penalty": 25
+    },
+    {
+      "Id": 1,
+      "Capacity": 126,
+      "Penalty": 46
+    }
+  ],
+  "Items": [
+    {
+      "Id": 0,
+      "Weight": 96,
+      "Profit": 45
+    },
+    {
+      "Id": 1,
+      "Weight": 46,
+      "Profit": 20
+    },
+    {
+      "Id": 2,
+      "Weight": 73,
+      "Profit": 35
+    },
+    {
+      "Id": 3,
+      "Weight": 32,
+      "Profit": 15
+    },
+    {
+      "Id": 4,
+      "Weight": 41,
+      "Profit": 8
+    },
+    {
+      "Id": 5,
+      "Weight": 30,
+      "Profit": 6
+    },
+    {
+      "Id": 6,
+      "Weight": 36,
+      "Profit": 6
+    },
+    {
+      "Id": 7,
+      "Weight": 26,
+      "Profit": 10
+    },
+    {
+      "Id": 8,
+      "Weight": 26,
+      "Profit": 8
+    },
+    {
+      "Id": 9,
+      "Weight": 28,
+      "Profit": 4
+    },
+    {
+      "Id": 10,
+      "Weight": 46,
+      "Profit": 8
+    },
+    {
+      "Id": 11,
+      "Weight": 33,
+      "Profit": 3
+    },
+    {
+      "Id": 12,
+      "Weight": 40,
+      "Profit": 4
+    },
+    {
+      "Id": 13,
+      "Weight": 81,
+      "Profit": 32
+    },
+    {
+      "Id": 14,
+      "Weight": 56,
+      "Profit": 10
+    },
+    {
+      "Id": 15,
+      "Weight": 66,
+      "Profit": 6
+    },
+    {
+      "Id": 16,
+      "Weight": 70,
+      "Profit": 14
+    },
+    {
+      "Id": 17,
+      "Weight": 61,
+      "Profit": 30
+    },
+    {
+      "Id": 18,
+      "Weight": 91,
+      "Profit": 9
+    },
+    {
+      "Id": 19,
+      "Weight": 38,
+      "Profit": 9
+    }
+  ],
+  "Origin": "OwnInstances"
+}

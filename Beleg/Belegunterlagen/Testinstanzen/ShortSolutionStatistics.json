@@ -1,0 +1,79 @@
+{
+  "Instance01_m3_n20": {
+    "Objective Value": 238.0,
+    "Objective Bound": 238.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 14,
+    "Empty Knapsacks": 0
+  },
+  "Instance02_m3_n40": {
+    "Objective Value": 270.0,
+    "Objective Bound": 270.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 11,
+    "Empty Knapsacks": 0
+  },
+  "Instance03_m5_n40": {
+    "Objective Value": 785.0,
+    "Objective Bound": 785.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 14,
+    "Empty Knapsacks": 0
+  },
+  "Instance06_m10_n60": {
+    "Objective Value": 26436.0,
+    "Objective Bound": 26606.0,
+    "MIP Gap": 0.0064,
+    "Number of assigned Items": 40,
+    "Empty Knapsacks": 0
+  },
+  "Instance04_m10_n40": {
+    "Objective Value": 15805.0,
+    "Objective Bound": 16439.0,
+    "MIP Gap": 0.0401,
+    "Number of assigned Items": 26,
+    "Empty Knapsacks": 0
+  },
+  "Instance10_m25_n500": {
+    "Objective Value": 1773.0,
+    "Objective Bound": 1773.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 71,
+    "Empty Knapsacks": 0
+  },
+  "Instance05_m10_n60": {
+    "Objective Value": 26052.0,
+    "Objective Bound": 26299.0,
+    "MIP Gap": 0.0095,
+    "Number of assigned Items": 39,
+    "Empty Knapsacks": 0
+  },
+  "Instance09_m10_n100": {
+    "Objective Value": 42502.0,
+    "Objective Bound": 42666.0,
+    "MIP Gap": 0.0039,
+    "Number of assigned Items": 64,
+    "Empty Knapsacks": 0
+  },
+  "Instance07_m5_n75": {
+    "Objective Value": 879.0,
+    "Objective Bound": 879.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 16,
+    "Empty Knapsacks": 0
+  },
+  "Instance00_m2_n20": {
+    "Objective Value": 218.0,
+    "Objective Bound": 218.0,
+    "MIP Gap": 0.0,
+    "Number of assigned Items": 11,
+    "Empty Knapsacks": 0
+  },
+  "Instance08_m15_n75": {
+    "Objective Value": 31957.0,
+    "Objective Bound": 32164.0,
+    "MIP Gap": 0.0065,
+    "Number of assigned Items": 49,
+    "Empty Knapsacks": 0
+  }
+}
