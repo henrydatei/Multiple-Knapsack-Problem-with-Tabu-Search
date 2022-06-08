@@ -22,8 +22,9 @@ class Solver:
     def greedyAllocation(self) -> None:
         solution = [[] for i in range(self.inputdata.numKnapsacks)]
         sortedItems = sorted(self.inputdata.items, key = lambda item: item.profit/item.weight, reverse = True)
+        sortedKnapsacks = sorted(self.inputdata.knapsacks, key = lambda knap: knap.penalty, reverse = True)
         for item in sortedItems:
-            for knapsack in self.inputdata.knapsacks:
+            for knapsack in sortedKnapsacks:
                 currentWeight = sum([self.inputdata.items[itemID].weight for itemID in solution[knapsack.id]])
                 if currentWeight + item.weight <= knapsack.capacity:
                     solution[knapsack.id].append(item.id)
@@ -79,3 +80,5 @@ class Solver:
                 except:
                     pass
                 iteration = iteration + 1
+    def getBestSolutionFromSolutionPool(self):
+        return sorted(self.solutionPool, key = lambda sol: sol.profit, reverse = True)[0]
