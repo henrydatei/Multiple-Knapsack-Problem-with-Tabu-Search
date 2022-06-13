@@ -1,19 +1,22 @@
+from .TabuEntry import TabuEntry
 from .Solution import Solution
 from .InputData import InputData
-from .EvaluationLogic import EvalutationLogic
 import random
+import math
 
 class Solver:
     seed: int
     path: str
     inputdata: InputData
     solutionPool: list
+    tabuList: list
 
     def __init__(self, path, seed = 42) -> None:
         self.seed = seed
         self.path = path
         self.inputdata = InputData(path)
         self.solutionPool = []
+        self.tabuList = []
         random.seed(seed)
 
     def __repr__(self) -> str:
@@ -30,7 +33,7 @@ class Solver:
                     solution[knapsack.id].append(item.id)
                     break
         
-        return solution
+        return Solution(self.inputdata, solution)
 
     def generateNeighboorhood(self, initialSolution, type = "swap", maxIterations = 100):
         if type == "swap":
@@ -46,13 +49,12 @@ class Solver:
                 itemA = random.sample(contentA, 1)[0]
                 itemB = random.sample(contentB, 1)[0]
                 try:
-                    newAllocation = initialSolution.allocation
+                    newAllocation = list(initialSolution.allocation)
                     newAllocation[knapsackA.id].remove(itemA)
                     newAllocation[knapsackB.id].remove(itemB)
                     newAllocation[knapsackA.id].append(itemB)
                     newAllocation[knapsackB.id].append(itemA)
-                    sol = Solution(newAllocation)
-                    EvalutationLogic(self.inputdata).calcProfit(sol)
+                    sol = Solution(self.inputdata, newAllocation)
                     self.solutionPool.append(sol)
                 except:
                     pass
@@ -63,22 +65,61 @@ class Solver:
                 liste = random.sample(self.inputdata.knapsacks, 2)
                 knapsackA = liste[0]
                 knapsackB = liste[1]
-                print(knapsackA, knapsackB)
+                #print(knapsackA, knapsackB)
                 contentA = initialSolution.allocation[knapsackA.id]
-                print(contentA)
+                #print(contentA)
                 if len(contentA) == 0:
                     continue
                 itemA = random.sample(contentA, 1)[0]
                 try:
-                    newAllocation = initialSolution.allocation
+                    newAllocation = list(initialSolution.allocation)
                     newAllocation[knapsackA.id].remove(itemA)
                     newAllocation[knapsackB.id].append(itemA)
-                    print(newAllocation)
-                    sol = Solution(newAllocation)
-                    EvalutationLogic(self.inputdata).calcProfit(sol)
+                    #print(newAllocation)
+                    sol = Solution(self.inputdata, newAllocation)
+                    print(sol.profit, sol.allocation)
                     self.solutionPool.append(sol)
                 except:
                     pass
                 iteration = iteration + 1
+    
     def getBestSolutionFromSolutionPool(self):
         return sorted(self.solutionPool, key = lambda sol: sol.profit, reverse = True)[0]
+
+    def updateTabuList(self):
+        toRemove = []
+        for idx, tabuEntry in enumerate(self.tabuList):
+            tabuEntry.update()
+            if tabuEntry.time_remaining <= 0:
+                toRemove.append(idx)
+        for idx in toRemove[::-1]:
+            del self.tabuList[idx]
+
+    def aspirationskriterium(self, sol):
+        return False
+
+    def tabuSearch(self, initialSolution, maxIterationsTabuSearch = 10, maxIterationsNeighboorhood = 10000, tabuTime = 3):
+        bestSol = initialSolution
+        for iteration in range(maxIterationsTabuSearch):
+            print(f"Tabu-Search, Iteration {iteration}")
+            self.generateNeighboorhood(bestSol, "insert", math.floor(maxIterationsNeighboorhood/2))
+            if len(self.solutionPool) == 0:
+                self.generateNeighboorhood(bestSol, "swap", math.ceil(maxIterationsNeighboorhood/2))
+            else:
+                self.generateNeighboorhood(self.getBestSolutionFromSolutionPool(), "swap", math.ceil(maxIterationsNeighboorhood/2))
+
+            if len(self.solutionPool) > 0:
+                currentBestSol = self.getBestSolutionFromSolutionPool()
+                if currentBestSol not in [tabuentry.solution for tabuentry in self.tabuList] and currentBestSol.profit > bestSol.profit:
+                    bestSol = currentBestSol
+                elif self.aspirationskriterium(currentBestSol) and currentBestSol.profit > bestSol.profit:
+                    bestSol = currentBestSol
+
+                self.updateTabuList()
+                self.tabuList.append(TabuEntry(currentBestSol, tabuTime))
+                
+                print(f"\t - Lösung {bestSol.allocation} mit Profit {bestSol.profit}")
+            else:
+                print(f"\t - keine Lösung in diesem Durchgang gefunden")
+
+        return bestSol
