@@ -21,6 +21,7 @@ if __name__ == "__main__":
 
     bestSol = solver.tabuSearch(sol3, maxIterationsNeighboorhood = 10000)
     print(bestSol)
+    bestSol.to_json("test.json")
 
     # print("===================")
     # print([(sol.allocation, sol.profit) for sol in solver.solutionPool])

@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 import dataclasses
 from .InputData import InputData
+import json
+import os
 
 @dataclass
 class Solution:
@@ -28,3 +30,15 @@ class Solution:
         self.earnings = totalEarnings
         self.profit = totalEarnings - totalPenalty
         return valid
+
+    def to_json(self, filename, includeEarnings = False, includePenalty = False, force = False):
+        if not force and os.path.exists(filename):
+            print(f"File {filename} exists. Use force = True to override.")
+        else:
+            with open(filename, "w") as file:
+                solution = {"assignment": self.allocation, "score": self.profit}
+                if includeEarnings:
+                    solution["earnings"] = self.earnings
+                if includePenalty:
+                    solution["penalty"] = self.penalty
+                json.dump(solution, file, indent = 4, sort_keys = True)
