@@ -1,3 +1,4 @@
+from copy import deepcopy
 from .TabuEntry import TabuEntry
 from .Solution import Solution
 from .InputData import InputData
@@ -8,7 +9,7 @@ class Solver:
     seed: int
     path: str
     inputdata: InputData
-    solutionPool: list
+    solutionPool: list[Solution]
     tabuList: list
 
     def __init__(self, path, seed = 42) -> None:
@@ -48,16 +49,14 @@ class Solver:
                     continue
                 itemA = random.sample(contentA, 1)[0]
                 itemB = random.sample(contentB, 1)[0]
-                try:
-                    newAllocation = list(initialSolution.allocation)
-                    newAllocation[knapsackA.id].remove(itemA)
-                    newAllocation[knapsackB.id].remove(itemB)
-                    newAllocation[knapsackA.id].append(itemB)
-                    newAllocation[knapsackB.id].append(itemA)
-                    sol = Solution(self.inputdata, newAllocation)
-                    self.solutionPool.append(sol)
-                except:
-                    pass
+                newAllocation = list(initialSolution.allocation)
+                newAllocation[knapsackA.id].remove(itemA)
+                newAllocation[knapsackB.id].remove(itemB)
+                newAllocation[knapsackA.id].append(itemB)
+                newAllocation[knapsackB.id].append(itemA)
+                sol = Solution(self.inputdata, newAllocation)
+                if sol.calcProfit():
+                    self.solutionPool.append(deepcopy(sol))
                 iteration = iteration + 1
         elif type == "insert":
             iteration = 0
@@ -71,16 +70,14 @@ class Solver:
                 if len(contentA) == 0:
                     continue
                 itemA = random.sample(contentA, 1)[0]
-                try:
-                    newAllocation = list(initialSolution.allocation)
-                    newAllocation[knapsackA.id].remove(itemA)
-                    newAllocation[knapsackB.id].append(itemA)
-                    #print(newAllocation)
-                    sol = Solution(self.inputdata, newAllocation)
-                    print(sol.profit, sol.allocation)
-                    self.solutionPool.append(sol)
-                except:
-                    pass
+                newAllocation = list(initialSolution.allocation)
+                newAllocation[knapsackA.id].remove(itemA)
+                newAllocation[knapsackB.id].append(itemA)
+                #print(newAllocation)
+                sol = Solution(self.inputdata, newAllocation)
+                if sol.calcProfit():
+                    #print(sol.profit, sol.allocation)
+                    self.solutionPool.append(deepcopy(sol))
                 iteration = iteration + 1
     
     def getBestSolutionFromSolutionPool(self):
@@ -99,24 +96,24 @@ class Solver:
         return False
 
     def tabuSearch(self, initialSolution, maxIterationsTabuSearch = 10, maxIterationsNeighboorhood = 10000, tabuTime = 3):
-        bestSol = initialSolution
+        bestSol = deepcopy(initialSolution)
         for iteration in range(maxIterationsTabuSearch):
             print(f"Tabu-Search, Iteration {iteration}")
-            self.generateNeighboorhood(bestSol, "insert", math.floor(maxIterationsNeighboorhood/2))
+            self.generateNeighboorhood(deepcopy(bestSol), "insert", math.floor(maxIterationsNeighboorhood/2))
             if len(self.solutionPool) == 0:
-                self.generateNeighboorhood(bestSol, "swap", math.ceil(maxIterationsNeighboorhood/2))
+                self.generateNeighboorhood(deepcopy(bestSol), "swap", math.ceil(maxIterationsNeighboorhood/2))
             else:
-                self.generateNeighboorhood(self.getBestSolutionFromSolutionPool(), "swap", math.ceil(maxIterationsNeighboorhood/2))
+                self.generateNeighboorhood(deepcopy(self.getBestSolutionFromSolutionPool()), "swap", math.ceil(maxIterationsNeighboorhood/2))
 
             if len(self.solutionPool) > 0:
-                currentBestSol = self.getBestSolutionFromSolutionPool()
+                currentBestSol = deepcopy(self.getBestSolutionFromSolutionPool())
                 if currentBestSol not in [tabuentry.solution for tabuentry in self.tabuList] and currentBestSol.profit > bestSol.profit:
-                    bestSol = currentBestSol
-                elif self.aspirationskriterium(currentBestSol) and currentBestSol.profit > bestSol.profit:
-                    bestSol = currentBestSol
+                    bestSol = deepcopy(currentBestSol)
+                elif self.aspirationskriterium(deepcopy(currentBestSol)) and currentBestSol.profit > bestSol.profit:
+                    bestSol = deepcopy(currentBestSol)
 
                 self.updateTabuList()
-                self.tabuList.append(TabuEntry(currentBestSol, tabuTime))
+                self.tabuList.append(deepcopy(TabuEntry(currentBestSol, tabuTime)))
                 
                 print(f"\t - Lösung {bestSol.allocation} mit Profit {bestSol.profit}")
             else:

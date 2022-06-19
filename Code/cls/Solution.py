@@ -10,17 +10,16 @@ class Solution:
     earnings: int = dataclasses.field(init = False)
     profit: int = dataclasses.field(init = False)
 
-    def __post_init__(self):
-        self.calcProfit()
-
-    def calcProfit(self):
+    def calcProfit(self) -> bool:
+        valid = True
         totalEarnings = 0
         totalPenalty = 0
         for knapsackID, itemList in enumerate(self.allocation):
             items = [self.inputData.items[i] for i in itemList]
             weight = sum([item.weight for item in items])
             if self.inputData.knapsacks[knapsackID].capacity < weight:
-                raise Exception(f"Capacity for knapsack {knapsackID} to small: {weight}/{self.inputData.knapsacks[knapsackID].capacity}")
+                #raise Exception(f"Capacity for knapsack {knapsackID} to small: {weight}/{self.inputData.knapsacks[knapsackID].capacity}")
+                valid = False
             earnings = sum([item.profit for item in items])
             penalty = (self.inputData.knapsacks[knapsackID].capacity - weight) * self.inputData.knapsacks[knapsackID].penalty
             totalEarnings += earnings
@@ -28,3 +27,4 @@ class Solution:
         self.penalty = totalPenalty
         self.earnings = totalEarnings
         self.profit = totalEarnings - totalPenalty
+        return valid
