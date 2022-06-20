@@ -31,7 +31,7 @@ class Solution:
         self.profit = totalEarnings - totalPenalty
         return valid
 
-    def to_json(self, filename, includeEarnings = False, includePenalty = False, force = False):
+    def to_json(self, filename, includeEarnings = False, includePenalty = False, force = False) -> None:
         if not force and os.path.exists(filename):
             print(f"File {filename} exists. Use force = True to override.")
         else:

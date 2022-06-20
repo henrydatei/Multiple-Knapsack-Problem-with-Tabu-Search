@@ -9,7 +9,7 @@ class Solver:
     seed: int
     path: str
     inputdata: InputData
-    solutionPool: list[Solution]
+    solutionPool: list
     tabuList: list
 
     def __init__(self, path, seed = 42) -> None:
@@ -23,7 +23,7 @@ class Solver:
     def __repr__(self) -> str:
         return f"Solver({self.seed = }, {self.path = }, {self.inputdata = }, {self.solutionPool = })"
 
-    def greedyAllocation(self) -> None:
+    def greedyAllocation(self) -> Solution:
         solution = [[] for i in range(self.inputdata.numKnapsacks)]
         sortedItems = sorted(self.inputdata.items, key = lambda item: item.profit/item.weight, reverse = True)
         sortedKnapsacks = sorted(self.inputdata.knapsacks, key = lambda knap: knap.penalty, reverse = True)
@@ -36,7 +36,7 @@ class Solver:
         
         return Solution(self.inputdata, solution)
 
-    def generateNeighboorhood(self, initialSolution, type = "swap", maxIterations = 100):
+    def generateNeighboorhood(self, initialSolution, type = "swap", maxIterations = 100) -> None:
         if type == "swap":
             iteration = 0
             while iteration < maxIterations:
@@ -80,10 +80,10 @@ class Solver:
                     self.solutionPool.append(deepcopy(sol))
                 iteration = iteration + 1
     
-    def getBestSolutionFromSolutionPool(self):
+    def getBestSolutionFromSolutionPool(self) -> Solution:
         return sorted(self.solutionPool, key = lambda sol: sol.profit, reverse = True)[0]
 
-    def updateTabuList(self):
+    def updateTabuList(self) -> None:
         toRemove = []
         for idx, tabuEntry in enumerate(self.tabuList):
             tabuEntry.update()
@@ -92,10 +92,10 @@ class Solver:
         for idx in toRemove[::-1]:
             del self.tabuList[idx]
 
-    def aspirationskriterium(self, sol):
+    def aspirationskriterium(self, sol) -> float:
         return False
 
-    def tabuSearch(self, initialSolution, maxIterationsTabuSearch = 10, maxIterationsNeighboorhood = 10000, tabuTime = 3):
+    def tabuSearch(self, initialSolution, maxIterationsTabuSearch = 10, maxIterationsNeighboorhood = 10000, tabuTime = 3) -> Solution:
         bestSol = deepcopy(initialSolution)
         for iteration in range(maxIterationsTabuSearch):
             print(f"Tabu-Search, Iteration {iteration}")
