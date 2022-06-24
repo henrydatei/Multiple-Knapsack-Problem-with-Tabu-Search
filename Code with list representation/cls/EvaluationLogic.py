@@ -22,7 +22,7 @@ class EvaluationLogic:
             else:
                 totalPenalty += (maxCap - currentCap) * penalty
 
-        if not valid:
+        if valid:
             solution.penalty = totalPenalty
             solution.earnings = totalEarnings
             solution.profit = totalEarnings - totalPenalty

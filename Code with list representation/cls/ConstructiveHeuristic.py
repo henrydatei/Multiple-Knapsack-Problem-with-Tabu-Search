@@ -14,12 +14,21 @@ class ConstructiveHeuristics:
         self.SolutionPool = solutionPool
 
     def greedyAllocation(self, inputData: InputData) -> Tuple[bool, Solution]:
-        emptyAllocation = [-1] * inputData.NumItems
+        allocation = [-1] * inputData.NumItems
         sortedItems = sorted(inputData.InputItems, key = lambda item: item.Profit/item.Weight, reverse = True)
         sortedKnapsacks = sorted(inputData.InputKnapsacks, key = lambda knap: knap.Penalty, reverse = True)
         for item in sortedItems:
             for knapsack in sortedKnapsacks:
-                currentWeight = sum() # TODO
+                itemIDs = [i for i, x in enumerate(allocation) if x == knapsack.Id]
+                items = [inputData.findItemByID(itemID) for itemID in itemIDs]
+                currentWeight = sum([item.Weight for item in items])
+                #print(item, knapsack, items, currentWeight)
+                if currentWeight + item.Weight <= knapsack.Capacity:
+                    allocation[item.Id] = knapsack.Id
+                    break
+        sol = Solution(allocation)
+        valid = self.EvaluationLogic.calcProfit(sol)
+        return valid, sol
 
     def Run(self, inputData: InputData, solutionMethod: str) -> None:
         print('Generating an initial solution according to ' + solutionMethod + '.')
@@ -27,7 +36,7 @@ class ConstructiveHeuristics:
         solution = None 
         
         if solutionMethod == 'greedy':
-            valid, solution = self.greedyAllocation(inputData.NumItems)
+            valid, solution = self.greedyAllocation(inputData)
         else:
             print('Unkown constructive solution method: ' + solutionMethod + '.')
 

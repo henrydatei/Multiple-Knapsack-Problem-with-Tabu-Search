@@ -4,6 +4,7 @@ from cls.EvaluationLogic import EvaluationLogic
 from cls.Solution import Solution
 from cls.ConstructiveHeuristic import ConstructiveHeuristics
 from cls.SolutionPool import SolutionPool
+from cls.Neighborhood import BlockNeighborhoodK3, InsertionNeighborhood, SwapNeighborhood, TwoEdgeExchangeNeighborhood
 
 if __name__ == "__main__":
     #path = "/Users/henryhaustein/Downloads/Github/Multiple-Knapsack-Problem-with-Tabu-Search/Code"
@@ -21,5 +22,26 @@ if __name__ == "__main__":
 
     pool = SolutionPool()
     heuristik = ConstructiveHeuristics(EvaluationLogic(data), pool)
-    heuristik.Run(data, "ROS")
+    heuristik.Run(data, "greedy")
+    print(pool)
+
+    swapN = SwapNeighborhood(data, pool.GetLowestProfitSolution().allocation, EvaluationLogic(data), pool)
+    swapN.DiscoverMoves()
+    swapN.EvaluateMoves("BestImprovement")
+    print(swapN.MakeBestMove())
+
+    insertN = InsertionNeighborhood(data, pool.GetLowestProfitSolution().allocation, EvaluationLogic(data), pool)
+    insertN.DiscoverMoves()
+    insertN.EvaluateMoves("BestImprovement")
+    print(insertN.MakeBestMove())
+
+    k3N = BlockNeighborhoodK3(data, pool.GetLowestProfitSolution().allocation, EvaluationLogic(data), pool)
+    k3N.DiscoverMoves()
+    k3N.EvaluateMoves("BestImprovement")
+    print(k3N.MakeBestMove())
+
+    twoEN = TwoEdgeExchangeNeighborhood(data, pool.GetLowestProfitSolution().allocation, EvaluationLogic(data), pool)
+    twoEN.DiscoverMoves()
+    twoEN.EvaluateMoves("BestImprovement")
+    print(twoEN.MakeBestMove())
     

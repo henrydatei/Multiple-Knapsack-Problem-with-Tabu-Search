@@ -1,9 +1,15 @@
-from OutputData import *
 from copy import deepcopy
+from .Solution import Solution
+from .InputData import InputData
+from .EvaluationLogic import EvaluationLogic
+from .SolutionPool import SolutionPool
+
+from typing import Tuple
+
 class BaseNeighborhood:
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
+    def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
         self.InputData = inputData
-        self.Permutation = initialPermutation
+        self.Allocation = initialAllocation
         self.EvaluationLogic = evaluationLogic
         self.SolutionPool = solutionPool
 
@@ -12,10 +18,10 @@ class BaseNeighborhood:
 
         self.Type = 'None'
 
-    def DiscoverMoves(self):
+    def DiscoverMoves(self) -> None:
         raise Exception('DiscoverMoves() is not implemented for the abstract BaseNeighborhood class.')
 
-    def EvaluateMoves(self, evaluationStrategy):
+    def EvaluateMoves(self, evaluationStrategy: str) -> None:
         if evaluationStrategy == 'BestImprovement':
             self.EvaluateMovesBestImprovement()
         elif evaluationStrategy == 'FirstImprovement':
@@ -23,202 +29,182 @@ class BaseNeighborhood:
         else:
             raise Exception(f'Evaluation strategy {evaluationStrategy} not implemented.')
 
-    def EvaluateMove(self, move):
-        moveSolution = Solution(self.InputData.InputJobs, move.Permutation)
-        self.EvaluationLogic.DefineStartEnd(moveSolution)
+    def EvaluateMove(self, move) -> Tuple[bool, Solution]:
+        moveSolution = Solution(move.Allocation)
+        valid = self.EvaluationLogic.calcProfit(moveSolution)
 
-        return moveSolution
+        return valid, moveSolution
 
     """ Evaluate all moves. """
-    def EvaluateMovesBestImprovement(self):
+    def EvaluateMovesBestImprovement(self) -> None:
         for move in self.Moves:
-            moveSolution = self.EvaluateMove(move)
+            valid, moveSolution = self.EvaluateMove(move)
 
-            self.MoveSolutions.append(moveSolution)
+            if valid:
+                self.MoveSolutions.append(moveSolution)
 
     """ Evaluate all moves until the first one is found that improves the best solution found so far. """
-    def EvaluateMovesFirstImprovement(self):
-        bestObjective = self.SolutionPool.GetLowestMakespanSolution().Makespan
+    def EvaluateMovesFirstImprovement(self) -> None:
+        bestObjective = self.SolutionPool.GetLowestProfitSolution().profit
 
         for move in self.Moves:
-            moveSolution = self.EvaluateMove(move)
+            valid, moveSolution = self.EvaluateMove(move)
 
-            self.MoveSolutions.append(moveSolution)
+            if valid:
+                self.MoveSolutions.append(moveSolution)
 
-            if moveSolution.Makespan < bestObjective:
+            if moveSolution.profit < bestObjective:
                 # abort neighborhood evaluation because an improvement has been found
                 return
 
-    def MakeBestMove(self):
-        self.MoveSolutions.sort(key = lambda solution: solution.Makespan) # sort solutions according to makespan
+    def MakeBestMove(self) -> Solution:
+        self.MoveSolutions.sort(key = lambda solution: solution.profit, reverse = True) # sort solutions according to profit
 
         bestNeighborhoodSolution = self.MoveSolutions[0]
 
         return bestNeighborhoodSolution
 
-    def Update(self, permutation):
-        self.Permutation = permutation
+    def Update(self, permutation: list) -> None:
+        self.Allocation = permutation
 
         self.Moves.clear()
         self.MoveSolutions.clear()
 
-    def LocalSearch(self, neighborhoodEvaluationStrategy, solution):
+    def LocalSearch(self, neighborhoodEvaluationStrategy: str, solution: Solution) -> None:
         #bestCurrentSolution = self.SolutionPool.GetLowestMakespanSolution() ## TO.DO: Lösung übergeben?
 
         hasSolutionImproved = True
 
         while hasSolutionImproved:
-            self.Update(solution.Permutation)
+            self.Update(solution.allocation)
             self.DiscoverMoves()
             self.EvaluateMoves(neighborhoodEvaluationStrategy)
 
             bestNeighborhoodSolution = self.MakeBestMove()
 
-            if bestNeighborhoodSolution.Makespan < solution.Makespan:
+            if bestNeighborhoodSolution.profit < solution.profit:
                 # print("New best solution has been found!")
                 # print(bestNeighborhoodSolution)
 
                 self.SolutionPool.AddSolution(bestNeighborhoodSolution)
 
-                solution.Permutation = bestNeighborhoodSolution.Permutation
-                solution.Makespan = bestNeighborhoodSolution.Makespan
+                solution.allocation = bestNeighborhoodSolution.allocation
+                solution.profit = bestNeighborhoodSolution.profit
             else:
                 # print(f"Reached local optimum of {self.Type} neighborhood. Stop local search.")
                 hasSolutionImproved = False        
 
 """ Represents the swap of the element at IndexA with the element at IndexB for a given permutation (= solution). """
 class SwapMove:
-    def __init__(self, initialPermutation, indexA, indexB):
-        self.Permutation = list(initialPermutation) # create a copy of the permutation
+    def __init__(self, initialAllocation, indexA, indexB):
+        self.Allocation = list(initialAllocation) # create a copy of the permutation
         self.IndexA = indexA
         self.IndexB = indexB
 
-        self.Permutation[indexA] = initialPermutation[indexB]
-        self.Permutation[indexB] = initialPermutation[indexA]
+        self.Allocation[indexA] = initialAllocation[indexB]
+        self.Allocation[indexB] = initialAllocation[indexA]
         
 """ Contains all $n choose 2$ swap moves for a given permutation (= solution). """
 class SwapNeighborhood(BaseNeighborhood):
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
-        super().__init__(inputData, initialPermutation, evaluationLogic, solutionPool)
+    def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
+        super().__init__(inputData, initialAllocation, evaluationLogic, solutionPool)
 
         self.Type = 'Swap'
 
     """ Generate all $n choose 2$ moves. """
-    def DiscoverMoves(self):
-        for i in range(len(self.Permutation)):
-            for j in range(len(self.Permutation)):
+    def DiscoverMoves(self) -> None:
+        for i in range(len(self.Allocation)):
+            for j in range(len(self.Allocation)):
                 if i < j:
-                    swapMove = SwapMove(self.Permutation, i, j)
+                    swapMove = SwapMove(self.Allocation, i, j)
                     self.Moves.append(swapMove)
 
 """ Represents the insertion of the element at IndexA at the new position IndexB for a given permutation (= solution). """
 class InsertionMove:
-    def __init__(self, initialPermutation, indexA, indexB):
-        self.Permutation = [] # create a copy of the permutation
+    def __init__(self, initialAllocation: list, indexA: int, indexB: int):
+        self.Allocation = [] # create a copy of the permutation
         self.IndexA = indexA
         self.IndexB = indexB
 
-        for k in range(len(initialPermutation)):
+        for k in range(len(initialAllocation)):
             if k == indexA:
                 continue
 
-            self.Permutation.append(initialPermutation[k])
+            self.Allocation.append(initialAllocation[k])
 
-        self.Permutation.insert(indexB, initialPermutation[indexA])
+        self.Allocation.insert(indexB, initialAllocation[indexA])
 
 """ Contains all $(n - 1)^2$ insertion moves for a given permutation (= solution). """
 class InsertionNeighborhood(BaseNeighborhood):
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
-        super().__init__(inputData, initialPermutation, evaluationLogic, solutionPool)
+    def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
+        super().__init__(inputData, initialAllocation, evaluationLogic, solutionPool)
 
         self.Type = 'Insertion'
 
-    def DiscoverMoves(self):
-        for i in range(len(self.Permutation)):
-            for j in range(len(self.Permutation)):
+    def DiscoverMoves(self) -> None:
+        for i in range(len(self.Allocation)):
+            for j in range(len(self.Allocation)):
                 if i == j or i == j + 1:
                     continue
 
-                insertionMove = InsertionMove(self.Permutation, i, j)
+                insertionMove = InsertionMove(self.Allocation, i, j)
                 self.Moves.append(insertionMove)
                 
 # Exercise in SS21, do not use in SS22
 """ Represents the extraction of the sequence of elements starting at IndexA and ending at IndexA + $k$, and the reinsertion at the new position IndexB for a given permutation (= solution) for $k = 3$. """
 class BlockMoveK3:
-    def __init__(self, initialPermutation, indexA, indexB):
-        self.Permutation = [] # create a copy of the permutation
+    def __init__(self, initialAllocation: list, indexA: int, indexB: int):
+        self.Allocation = [] # create a copy of the permutation
         self.IndexA = indexA
         self.IndexB = indexB
         self.Length = 3 # pass as parameter to constructor to obtain the general block move
 
-        for i in range(len(initialPermutation)):
+        for i in range(len(initialAllocation)):
             if i >= indexA and i < indexA + self.Length:  # if i in range(indexA, indexA + self.Length):
                 continue
 
-            self.Permutation.append(initialPermutation[i])
+            self.Allocation.append(initialAllocation[i])
 
         for i in range(self.Length):
-            self.Permutation.insert(indexB + i, initialPermutation[indexA + i])
+            self.Allocation.insert(indexB + i, initialAllocation[indexA + i])
 
 """ Contains all $(n - k + 1)(n - k) - \max(0, n - 2k + 1)$ block moves for a given permutation (= solution) for $k = 3$. """
 class BlockNeighborhoodK3(BaseNeighborhood):
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
-        super().__init__(inputData, initialPermutation, evaluationLogic, solutionPool)
+    def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
+        super().__init__(inputData, initialAllocation, evaluationLogic, solutionPool)
 
-        self.Type = 'Insertion'
+        self.Type = 'K3'
         self.Length = 3
 
-    def DiscoverMoves(self):
-        for i in range(len(self.Permutation) - self.Length + 1):
-            for j in range(len(self.Permutation) - self.Length + 1):
+    def DiscoverMoves(self) -> None:
+        for i in range(len(self.Allocation) - self.Length + 1):
+            for j in range(len(self.Allocation) - self.Length + 1):
                 # skip if: (the block would be reinserted at its initial position) or (the current block would be swapped with the preceding block to exclude symmetry) 
                 if i == j or j == i - self.Length:
                     continue
 
-                blockMove = BlockMoveK3(self.Permutation, i, j)
+                blockMove = BlockMoveK3(self.Allocation, i, j)
                 self.Moves.append(blockMove)
 
 # Exercise in SS22
 class TwoEdgeExchangeMove:
-    def __init__(self, initialPermutation, indexA, indexB):
-        self.Permutation = []
+    def __init__(self, initialAllocation: list, indexA: int, indexB: int):
+        self.Allocation = []
 
-        self.Permutation.extend(initialPermutation[:indexA])
-        self.Permutation.extend(reversed(initialPermutation[indexA:indexB]))
-        self.Permutation.extend(initialPermutation[indexB:])
+        self.Allocation.extend(initialAllocation[:indexA])
+        self.Allocation.extend(reversed(initialAllocation[indexA:indexB]))
+        self.Allocation.extend(initialAllocation[indexB:])
 
 class TwoEdgeExchangeNeighborhood(BaseNeighborhood):
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
-        super().__init__(inputData, initialPermutation, evaluationLogic, solutionPool)
+    def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
+        super().__init__(inputData, initialAllocation, evaluationLogic, solutionPool)
 
         self.Type = 'TwoEdgeExchange'
     
-    def DiscoverMoves(self):
-        for i in range(len(self.Permutation)):
-            for j in range(len(self.Permutation)):
+    def DiscoverMoves(self) -> None:
+        for i in range(len(self.Allocation)):
+            for j in range(len(self.Allocation)):
                 if j < i + 1:
                     continue
-                twoEdgeMove = TwoEdgeExchangeMove(self.Permutation, i, j)
+                twoEdgeMove = TwoEdgeExchangeMove(self.Allocation, i, j)
                 self.Moves.append(twoEdgeMove)
-
-class TaillardInsertionMove:
-    def __init__(self, initialPermutation, indexA):
-        self.removedJob = initialPermutation[indexA]
-        self.Permutation = [x for x in initialPermutation if x != self.removedJob]
-
-class TaillardInsertionNeighborhood(BaseNeighborhood):
-    def __init__(self, inputData, initialPermutation, evaluationLogic, solutionPool):
-        super().__init__(inputData, initialPermutation, evaluationLogic, solutionPool)
-
-        self.Type = 'TaillardInsertion'
-
-    def DiscoverMoves(self):
-        for i in range(len(self.Permutation)):
-            bestInsertionMove = TaillardInsertionMove(self.Permutation, i)
-            self.Moves.append(bestInsertionMove)
-
-    def EvaluateMove(self, move):
-        moveSolution = Solution(self.InputData.InputJobs, move.Permutation)
-        self.EvaluationLogic.DetermineBestInsertionAccelerated(moveSolution, move.removedJob)
-
-        return moveSolution
