@@ -1,9 +1,12 @@
 from .Neighborhood import SwapNeighborhood, InsertionNeighborhood, BlockNeighborhoodK3, TwoEdgeExchangeNeighborhood
 from .InputData import InputData
 from .Solution import Solution
+from .EvaluationLogic import EvaluationLogic
+from .SolutionPool import SolutionPool
 import math
 from copy import deepcopy
 import numpy
+from dataclasses import dataclass
 
 """ Base class for several types of improvement algorithms. """ 
 class ImprovementAlgorithm:
@@ -18,7 +21,7 @@ class ImprovementAlgorithm:
         self.NeighborhoodTypes = neighborhoodTypes
         self.Neighborhoods = {}
 
-    def Initialize(self, evaluationLogic, solutionPool, rng = None) -> None:
+    def Initialize(self, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool, rng = None) -> None:
         self.EvaluationLogic = evaluationLogic
         self.SolutionPool = solutionPool
         self.RNG = rng
@@ -56,6 +59,31 @@ class IterativeImprovement(ImprovementAlgorithm):
             neighborhood.LocalSearch(self.NeighborhoodEvaluationStrategy, solution)
         
         return solution
+
+class TabuSearch(ImprovementAlgorithm):
+    def __init__(self, inputData: InputData, maxIterations: int, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
+        super().__init__(inputData, neighborhoodEvaluationStrategy, neighborhoodTypes)
+        self.TabuList = []
+        self.MaxIterations = maxIterations
+
+    def aspirationskriterium(self, solution: Solution, bestSolution: Solution) -> bool:
+        return solution.profit > bestSolution.profit
+
+    def Run(self, initialSolution: Solution) -> Solution:
+        currentSolution = initialSolution
+        bestSolution = self.SolutionPool.GetLowestProfitSolution()
+        iteration = 1
+        while iteration <= self.MaxIterations:
+            iterative = IterativeImprovement(self.InputData, self.NeighborhoodEvaluationStrategy, self.NeighborhoodTypes)
+            iterative.Initialize(self.EvaluationLogic, self.SolutionPool)
+            currentSolution = iterative.Run(bestSolution)
+            if currentSolution not in self.TabuList or self.aspirationskriterium(currentSolution, bestSolution):
+                self.TabuList.append(deepcopy(currentSolution))
+                if currentSolution.profit > bestSolution.profit:
+                    bestSolution = currentSolution
+            iteration += 1
+
+        return bestSolution
 
 # """ Iterated greedy algorithm with destruction and construction. """
 # class IteratedGreedy(ImprovementAlgorithm):
