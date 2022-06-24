@@ -5,6 +5,8 @@ from cls.Solution import Solution
 from cls.ConstructiveHeuristic import ConstructiveHeuristics
 from cls.SolutionPool import SolutionPool
 from cls.Neighborhood import BlockNeighborhoodK3, InsertionNeighborhood, SwapNeighborhood, TwoEdgeExchangeNeighborhood
+from cls.Solver import Solver
+from cls.ImprovementAlgorithm import IterativeImprovement
 
 if __name__ == "__main__":
     #path = "/Users/henryhaustein/Downloads/Github/Multiple-Knapsack-Problem-with-Tabu-Search/Code"
@@ -44,4 +46,12 @@ if __name__ == "__main__":
     twoEN.DiscoverMoves()
     twoEN.EvaluateMoves("BestImprovement")
     print(twoEN.MakeBestMove())
-    
+
+    iterative = IterativeImprovement(data, 'BestImprovement', ['Swap','Insertion'])
+    iterative.Initialize(EvaluationLogic(data), pool)
+    iterative.Run(pool.GetLowestProfitSolution())
+    print(pool)
+
+    # solver = Solver(data, 42)
+    # insertion = IterativeImprovement(data, 'BestImprovement', ['Swap','Insertion'])
+    # solver.RunLocalSearch("greedy", insertion)

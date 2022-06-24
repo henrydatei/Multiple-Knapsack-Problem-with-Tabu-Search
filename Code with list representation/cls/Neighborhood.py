@@ -82,7 +82,7 @@ class BaseNeighborhood:
 
             bestNeighborhoodSolution = self.MakeBestMove()
 
-            if bestNeighborhoodSolution.profit < solution.profit:
+            if bestNeighborhoodSolution.profit > solution.profit:
                 # print("New best solution has been found!")
                 # print(bestNeighborhoodSolution)
 
