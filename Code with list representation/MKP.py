@@ -1,4 +1,7 @@
 import os
+from datetime import datetime
+from typing import Tuple
+
 from cls.InputData import InputData
 from cls.EvaluationLogic import EvaluationLogic
 from cls.Solution import Solution
@@ -8,11 +11,20 @@ from cls.Neighborhood import BlockNeighborhoodK3, InsertionNeighborhood, SwapNei
 from cls.Solver import Solver
 from cls.ImprovementAlgorithm import IterativeImprovement, TabuSearch
 
-if __name__ == "__main__":
-    #path = "/Users/henryhaustein/Downloads/Github/Multiple-Knapsack-Problem-with-Tabu-Search/Code"
-    path = "/home/henry/Downloads/GitHub/Multiple-Knapsack-Problem-with-Tabu-Search/Code with list representation"
+def runTimeStats(path: str) -> Tuple[Solution, datetime]:
+    start = datetime.now()
+    data = InputData(path)
+    solver = Solver(data, 42)
+    tabu = TabuSearch(data, 10, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
+    bestSol = solver.RunLocalSearch("greedy", tabu)
+    end = datetime.now()
+    return bestSol, end - start
 
-    data = InputData(os.path.join(path, 'Instance03_m5_n40.json'))
+if __name__ == "__main__":
+    path = "/Users/henryhaustein/Downloads/Github/Multiple-Knapsack-Problem-with-Tabu-Search/Code with list representation/Testinstanzen"
+    #path = "/home/henry/Downloads/GitHub/Multiple-Knapsack-Problem-with-Tabu-Search/Code with list representation/Testinstanzen"
+
+    data = InputData(os.path.join(path, 'Instance6_m10_n100.json'))
     # print(data)
 
     # sol = Solution([2,2,-1,1,-1,0,2,1,1,2,2,-1,1,0,1,-1,2,2,-1,1])
@@ -22,10 +34,10 @@ if __name__ == "__main__":
 
     # sol.printSolution()
 
-    pool = SolutionPool()
-    heuristik = ConstructiveHeuristics(EvaluationLogic(data), pool)
-    heuristik.Run(data, "greedy")
-    print(pool)
+    # pool = SolutionPool()
+    # heuristik = ConstructiveHeuristics(EvaluationLogic(data), pool)
+    # heuristik.Run(data, "greedy")
+    # print(pool)
 
     # swapN = SwapNeighborhood(data, pool.GetLowestProfitSolution().allocation, EvaluationLogic(data), pool)
     # swapN.DiscoverMoves()
@@ -52,20 +64,14 @@ if __name__ == "__main__":
     # iterative.Run(pool.GetLowestProfitSolution())
     # print(pool)
 
-    #solver = Solver(data, 42)
-    #tabu = TabuSearch(data, 100, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
-    #solver.RunLocalSearch("greedy", tabu)
-
-    insertion = IterativeImprovement(data, 'BestImprovement', ['Swap'])
-    insertion.Initialize(EvaluationLogic(data), pool)
-    print("")
-    print("===================== is currently =====================")
-    print(insertion.Run(pool.GetLowestProfitSolution()))
-
-    sol = Solution([4, -1, -1, -1, -1, -1, -1, 0, -1, 3, -1, 1, 0, 1, 4, -1, -1, 3, -1, 0, 2, -1, -1, 0, 4, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 2, -1])
-    EvaluationLogic(data).calcProfit(sol)
-    print("")
-    print("===================== should be =====================")
-    print(sol)
+    # solver = Solver(data, 42)
+    # tabu = TabuSearch(data, 10, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
+    # bestSol = solver.RunLocalSearch("greedy", tabu)
     
+    times = []
 
+    for file in os.listdir(path):
+        sol, time = runTimeStats(os.path.join(path, file))
+        times.append((file, time, sol))
+
+    print(times)

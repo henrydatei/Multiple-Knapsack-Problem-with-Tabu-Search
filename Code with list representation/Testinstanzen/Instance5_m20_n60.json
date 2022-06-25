@@ -1,0 +1,409 @@
+{
+  "NumKnapSacks": 20,
+  "NumItems": 60,
+  "KnapSacks": [
+    {
+      "Id": 0,
+      "Capacity": 1249,
+      "Penalty": 3
+    },
+    {
+      "Id": 1,
+      "Capacity": 1248,
+      "Penalty": 4
+    },
+    {
+      "Id": 2,
+      "Capacity": 1228,
+      "Penalty": 4
+    },
+    {
+      "Id": 3,
+      "Capacity": 1155,
+      "Penalty": 4
+    },
+    {
+      "Id": 4,
+      "Capacity": 1057,
+      "Penalty": 3
+    },
+    {
+      "Id": 5,
+      "Capacity": 835,
+      "Penalty": 3
+    },
+    {
+      "Id": 6,
+      "Capacity": 802,
+      "Penalty": 5
+    },
+    {
+      "Id": 7,
+      "Capacity": 755,
+      "Penalty": 3
+    },
+    {
+      "Id": 8,
+      "Capacity": 728,
+      "Penalty": 3
+    },
+    {
+      "Id": 9,
+      "Capacity": 700,
+      "Penalty": 3
+    },
+    {
+      "Id": 10,
+      "Capacity": 691,
+      "Penalty": 3
+    },
+    {
+      "Id": 11,
+      "Capacity": 661,
+      "Penalty": 3
+    },
+    {
+      "Id": 12,
+      "Capacity": 586,
+      "Penalty": 5
+    },
+    {
+      "Id": 13,
+      "Capacity": 519,
+      "Penalty": 3
+    },
+    {
+      "Id": 14,
+      "Capacity": 401,
+      "Penalty": 3
+    },
+    {
+      "Id": 15,
+      "Capacity": 262,
+      "Penalty": 4
+    },
+    {
+      "Id": 16,
+      "Capacity": 254,
+      "Penalty": 3
+    },
+    {
+      "Id": 17,
+      "Capacity": 219,
+      "Penalty": 4
+    },
+    {
+      "Id": 18,
+      "Capacity": 151,
+      "Penalty": 3
+    },
+    {
+      "Id": 19,
+      "Capacity": 98,
+      "Penalty": 3
+    }
+  ],
+  "Items": [
+    {
+      "Id": 0,
+      "Weight": 148,
+      "Profit": 401
+    },
+    {
+      "Id": 1,
+      "Weight": 870,
+      "Profit": 423
+    },
+    {
+      "Id": 2,
+      "Weight": 1147,
+      "Profit": 454
+    },
+    {
+      "Id": 3,
+      "Weight": 1170,
+      "Profit": 467
+    },
+    {
+      "Id": 4,
+      "Weight": 975,
+      "Profit": 502
+    },
+    {
+      "Id": 5,
+      "Weight": 811,
+      "Profit": 550
+    },
+    {
+      "Id": 6,
+      "Weight": 158,
+      "Profit": 605
+    },
+    {
+      "Id": 7,
+      "Weight": 760,
+      "Profit": 625
+    },
+    {
+      "Id": 8,
+      "Weight": 658,
+      "Profit": 631
+    },
+    {
+      "Id": 9,
+      "Weight": 432,
+      "Profit": 646
+    },
+    {
+      "Id": 10,
+      "Weight": 118,
+      "Profit": 661
+    },
+    {
+      "Id": 11,
+      "Weight": 154,
+      "Profit": 665
+    },
+    {
+      "Id": 12,
+      "Weight": 489,
+      "Profit": 668
+    },
+    {
+      "Id": 13,
+      "Weight": 966,
+      "Profit": 807
+    },
+    {
+      "Id": 14,
+      "Weight": 497,
+      "Profit": 830
+    },
+    {
+      "Id": 15,
+      "Weight": 1230,
+      "Profit": 918
+    },
+    {
+      "Id": 16,
+      "Weight": 360,
+      "Profit": 958
+    },
+    {
+      "Id": 17,
+      "Weight": 960,
+      "Profit": 984
+    },
+    {
+      "Id": 18,
+      "Weight": 1081,
+      "Profit": 1035
+    },
+    {
+      "Id": 19,
+      "Weight": 217,
+      "Profit": 1093
+    },
+    {
+      "Id": 20,
+      "Weight": 140,
+      "Profit": 1132
+    },
+    {
+      "Id": 21,
+      "Weight": 67,
+      "Profit": 1153
+    },
+    {
+      "Id": 22,
+      "Weight": 625,
+      "Profit": 1184
+    },
+    {
+      "Id": 23,
+      "Weight": 935,
+      "Profit": 1226
+    },
+    {
+      "Id": 24,
+      "Weight": 493,
+      "Profit": 1255
+    },
+    {
+      "Id": 25,
+      "Weight": 162,
+      "Profit": 1260
+    },
+    {
+      "Id": 26,
+      "Weight": 439,
+      "Profit": 1295
+    },
+    {
+      "Id": 27,
+      "Weight": 81,
+      "Profit": 1314
+    },
+    {
+      "Id": 28,
+      "Weight": 842,
+      "Profit": 1318
+    },
+    {
+      "Id": 29,
+      "Weight": 453,
+      "Profit": 1374
+    },
+    {
+      "Id": 30,
+      "Weight": 126,
+      "Profit": 402
+    },
+    {
+      "Id": 31,
+      "Weight": 644,
+      "Profit": 415
+    },
+    {
+      "Id": 32,
+      "Weight": 459,
+      "Profit": 439
+    },
+    {
+      "Id": 33,
+      "Weight": 1099,
+      "Profit": 452
+    },
+    {
+      "Id": 34,
+      "Weight": 1003,
+      "Profit": 455
+    },
+    {
+      "Id": 35,
+      "Weight": 1034,
+      "Profit": 490
+    },
+    {
+      "Id": 36,
+      "Weight": 230,
+      "Profit": 536
+    },
+    {
+      "Id": 37,
+      "Weight": 1201,
+      "Profit": 562
+    },
+    {
+      "Id": 38,
+      "Weight": 80,
+      "Profit": 563
+    },
+    {
+      "Id": 39,
+      "Weight": 974,
+      "Profit": 645
+    },
+    {
+      "Id": 40,
+      "Weight": 1076,
+      "Profit": 657
+    },
+    {
+      "Id": 41,
+      "Weight": 381,
+      "Profit": 698
+    },
+    {
+      "Id": 42,
+      "Weight": 420,
+      "Profit": 725
+    },
+    {
+      "Id": 43,
+      "Weight": 1005,
+      "Profit": 729
+    },
+    {
+      "Id": 44,
+      "Weight": 105,
+      "Profit": 762
+    },
+    {
+      "Id": 45,
+      "Weight": 1012,
+      "Profit": 798
+    },
+    {
+      "Id": 46,
+      "Weight": 368,
+      "Profit": 874
+    },
+    {
+      "Id": 47,
+      "Weight": 1233,
+      "Profit": 891
+    },
+    {
+      "Id": 48,
+      "Weight": 413,
+      "Profit": 930
+    },
+    {
+      "Id": 49,
+      "Weight": 969,
+      "Profit": 979
+    },
+    {
+      "Id": 50,
+      "Weight": 683,
+      "Profit": 1032
+    },
+    {
+      "Id": 51,
+      "Weight": 192,
+      "Profit": 1071
+    },
+    {
+      "Id": 52,
+      "Weight": 764,
+      "Profit": 1105
+    },
+    {
+      "Id": 53,
+      "Weight": 983,
+      "Profit": 1112
+    },
+    {
+      "Id": 54,
+      "Weight": 903,
+      "Profit": 1156
+    },
+    {
+      "Id": 55,
+      "Weight": 1063,
+      "Profit": 1162
+    },
+    {
+      "Id": 56,
+      "Weight": 331,
+      "Profit": 1170
+    },
+    {
+      "Id": 57,
+      "Weight": 199,
+      "Profit": 1305
+    },
+    {
+      "Id": 58,
+      "Weight": 269,
+      "Profit": 1317
+    },
+    {
+      "Id": 59,
+      "Weight": 1056,
+      "Profit": 1351
+    }
+  ],
+  "Origin": "probT1_2S_R50_T002_M020_N0060_seed01.txt"
+}

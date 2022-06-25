@@ -92,6 +92,8 @@ class BaseNeighborhood:
 
                 solution.allocation = bestNeighborhoodSolution.allocation
                 solution.profit = bestNeighborhoodSolution.profit
+                solution.earnings = bestNeighborhoodSolution.earnings
+                solution.penalty = bestNeighborhoodSolution.penalty
             else:
                 #print(f"Reached local optimum of {self.Type} neighborhood. Stop local search.")
                 hasSolutionImproved = False        

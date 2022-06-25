@@ -10,7 +10,7 @@ class Solution:
     earnings: int = dataclasses.field(init = False, default = -99999999)
     profit: int = dataclasses.field(init = False, default = -99999999)
 
-    def to_json(self, filename, includeEarnings = False, includePenalty = False, force = False) -> None:
+    def to_json(self, filename: str, includeEarnings = False, includePenalty = False, force = False) -> None:
         if not force and os.path.exists(filename):
             print(f"File {filename} exists. Use force = True to override.")
         else:
@@ -22,7 +22,7 @@ class Solution:
                     solution["penalty"] = self.penalty
                 json.dump(solution, file, indent = 4, sort_keys = True)
 
-    def printSolution(self):
+    def printSolution(self) -> None:
         for knapsackID in range(max(self.allocation) + 1):
             itemIDs = [i for i, x in enumerate(self.allocation) if x == knapsackID]
             print("Knapsack " + str(knapsackID) + ": " + str(itemIDs))

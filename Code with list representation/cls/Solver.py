@@ -35,17 +35,17 @@ class Solver:
 
         return bestInitalSolution
 
-    def ImprovementPhase(self, startSolution: Solution, algorithm: ImprovementAlgorithm) -> None:
+    def ImprovementPhase(self, startSolution: Solution, algorithm: ImprovementAlgorithm) -> Solution:
         algorithm.Initialize(self.EvaluationLogic, self.SolutionPool, self.RNG)
         bestSolution = algorithm.Run(startSolution)
-
         print("Best found Solution.")
         print(bestSolution)
+        return bestSolution
 
-    def RunLocalSearch(self, constructiveSolutionMethod: str, algorithm: ImprovementAlgorithm) -> None:
+    def RunLocalSearch(self, constructiveSolutionMethod: str, algorithm: ImprovementAlgorithm) -> Solution:
         startSolution = self.ConstructionPhase(constructiveSolutionMethod)
-
-        self.ImprovementPhase(startSolution, algorithm)
+        solution = self.ImprovementPhase(startSolution, algorithm)
+        return solution
 
     def EvalPFSP(self, individual: list) -> list:
         solution = Solution(individual)
