@@ -21,10 +21,11 @@ def runTimeStats(path: str) -> Tuple[Solution, datetime]:
     return bestSol, end - start
 
 if __name__ == "__main__":
-    path = "/Users/henryhaustein/Downloads/Github/Multiple-Knapsack-Problem-with-Tabu-Search/Code with list representation/Testinstanzen"
+    #path = os.getcwd()
+    path = os.path.dirname(os.path.abspath(__file__))
     #path = "/home/henry/Downloads/GitHub/Multiple-Knapsack-Problem-with-Tabu-Search/Code with list representation/Testinstanzen"
 
-    data = InputData(os.path.join(path, 'Instance6_m10_n100.json'))
+    data = InputData(os.path.join(path, "Testinstanzen", "Instance6_m10_n100.json"))
     # print(data)
 
     # sol = Solution([2,2,-1,1,-1,0,2,1,1,2,2,-1,1,0,1,-1,2,2,-1,1])
@@ -67,11 +68,3 @@ if __name__ == "__main__":
     # solver = Solver(data, 42)
     # tabu = TabuSearch(data, 10, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
     # bestSol = solver.RunLocalSearch("greedy", tabu)
-    
-    times = []
-
-    for file in os.listdir(path):
-        sol, time = runTimeStats(os.path.join(path, file))
-        times.append((file, time, sol))
-
-    print(times)
