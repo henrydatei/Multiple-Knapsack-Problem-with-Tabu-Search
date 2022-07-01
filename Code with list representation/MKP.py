@@ -65,6 +65,6 @@ if __name__ == "__main__":
     # iterative.Run(pool.GetHighestProfitSolution())
     # print(pool)
 
-    solver = Solver(data, 42)
-    tabu = TabuSearch(data, 10, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
-    bestSol = solver.RunLocalSearch("greedy", tabu)
+    # solver = Solver(data, 42)
+    # tabu = TabuSearch(data, 10, neighborhoodEvaluationStrategy = "BestImprovement", neighborhoodTypes = ['Swap', 'Insertion', 'BlockK3', 'TwoEdgeExchange'])
+    # bestSol = solver.RunLocalSearch("greedy", tabu)

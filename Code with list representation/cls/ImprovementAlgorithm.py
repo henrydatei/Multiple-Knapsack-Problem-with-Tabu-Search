@@ -77,9 +77,9 @@ class TabuSearch(ImprovementAlgorithm):
             iterative = IterativeImprovement(self.InputData, self.NeighborhoodEvaluationStrategy, self.NeighborhoodTypes)
             iterative.Initialize(self.EvaluationLogic, self.SolutionPool)
             currentSolution = iterative.Run(bestSolution)
-            if currentSolution not in self.TabuList or self.aspirationskriterium(currentSolution, bestSolution):
+            if currentSolution not in self.TabuList:
                 self.TabuList.append(deepcopy(currentSolution))
-                if currentSolution.profit > bestSolution.profit:
+                if currentSolution.profit > bestSolution.profit or self.aspirationskriterium(currentSolution, bestSolution):
                     bestSolution = currentSolution
             iteration += 1
 
