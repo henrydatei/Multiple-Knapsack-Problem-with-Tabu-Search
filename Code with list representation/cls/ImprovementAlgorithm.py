@@ -71,7 +71,7 @@ class TabuSearch(ImprovementAlgorithm):
 
     def Run(self, initialSolution: Solution) -> Solution:
         currentSolution = initialSolution
-        bestSolution = self.SolutionPool.GetLowestProfitSolution()
+        bestSolution = self.SolutionPool.GetHighestProfitSolution()
         iteration = 1
         while iteration <= self.MaxIterations:
             iterative = IterativeImprovement(self.InputData, self.NeighborhoodEvaluationStrategy, self.NeighborhoodTypes)

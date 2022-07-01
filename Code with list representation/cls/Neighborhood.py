@@ -45,7 +45,7 @@ class BaseNeighborhood:
 
     """ Evaluate all moves until the first one is found that improves the best solution found so far. """
     def EvaluateMovesFirstImprovement(self) -> None:
-        bestObjective = self.SolutionPool.GetLowestProfitSolution().profit
+        bestObjective = self.SolutionPool.GetHighestProfitSolution().profit
 
         for move in self.Moves:
             valid, moveSolution = self.EvaluateMove(move)
@@ -62,7 +62,7 @@ class BaseNeighborhood:
             self.MoveSolutions.sort(key = lambda solution: solution.profit, reverse = True) # sort solutions according to profit
             bestNeighborhoodSolution = self.MoveSolutions[0]
         else:
-            bestNeighborhoodSolution = self.SolutionPool.GetLowestProfitSolution()
+            bestNeighborhoodSolution = self.SolutionPool.GetHighestProfitSolution()
 
         return deepcopy(bestNeighborhoodSolution)
 

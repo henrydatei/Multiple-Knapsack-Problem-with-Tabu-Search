@@ -9,7 +9,7 @@ class SolutionPool:
     def AddSolution(self, newSolution):
         self.Solutions.append(deepcopy(newSolution))
 
-    def GetLowestProfitSolution(self) -> Solution:
-        self.Solutions.sort(key = lambda solution: solution.profit)
+    def GetHighestProfitSolution(self) -> Solution:
+        self.Solutions.sort(key = lambda solution: solution.profit, reverse = True)
 
         return deepcopy(self.Solutions[0])

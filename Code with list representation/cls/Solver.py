@@ -28,7 +28,7 @@ class Solver:
     def ConstructionPhase(self, constructiveSolutionMethod: str) -> Solution:
         self.ConstructiveHeuristic.Run(self.InputData, constructiveSolutionMethod)
 
-        bestInitalSolution = self.SolutionPool.GetLowestProfitSolution()
+        bestInitalSolution = self.SolutionPool.GetHighestProfitSolution()
 
         print("Constructive solution found.")
         print(bestInitalSolution)
