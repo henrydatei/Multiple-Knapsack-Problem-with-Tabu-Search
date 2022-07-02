@@ -1,8 +1,11 @@
+from .Solution import Solution
+from .InputData import InputData
+
 class EvaluationLogic:
-    def __init__(self, inputData):
+    def __init__(self, inputData: InputData):
         self.InputData = inputData
 
-    def calcProfit(self, solution) -> bool:
+    def calcProfit(self, solution: Solution) -> bool:
         valid = True
         totalEarnings = 0
         totalPenalty = 0
