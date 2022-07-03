@@ -6,6 +6,8 @@ from .SolutionPool import SolutionPool
 from copy import deepcopy
 from datetime import datetime, timedelta
 
+from typing import Tuple, List
+
 """ Base class for several types of improvement algorithms. """ 
 class ImprovementAlgorithm:
     def __init__(self, inputData: InputData, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
@@ -47,16 +49,16 @@ class IterativeImprovement(ImprovementAlgorithm):
     def __init__(self, inputData: InputData, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
         super().__init__(inputData, neighborhoodEvaluationStrategy, neighborhoodTypes)
 
-    def Run(self, solution: Solution) -> Solution:
+    def Run(self, solution: Solution) -> Tuple[Solution, List[Solution]]:
         self.InitializeNeighborhoods(solution)    
 
         # According to "Hansen et al. (2017): Variable neighorhood search", this is equivalent to the 
         # sequential variable neighborhood descent with a pipe neighborhood change step.
         for neighborhoodType in self.NeighborhoodTypes:
             neighborhood = self.Neighborhoods[neighborhoodType]
-            neighborhood.LocalSearch(self.NeighborhoodEvaluationStrategy, solution)
+            neighborhoodSolutions = neighborhood.LocalSearch(self.NeighborhoodEvaluationStrategy, solution)
         
-        return solution
+        return solution, neighborhoodSolutions
 
 class TabuSearch(ImprovementAlgorithm):
     def __init__(self, inputData: InputData, maxSeconds: int, maxIterations: int, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
@@ -70,17 +72,22 @@ class TabuSearch(ImprovementAlgorithm):
 
     def Run(self, initialSolution: Solution) -> Solution:
         start = datetime.now()
-        currentSolution = initialSolution
-        bestSolution = self.SolutionPool.GetHighestProfitSolution()
+        nextSolution = initialSolution
         iteration = 0
         while datetime.now() <= start + timedelta(seconds = self.MaxSeconds) and iteration <= self.MaxIterations:
             iterative = IterativeImprovement(self.InputData, self.NeighborhoodEvaluationStrategy, self.NeighborhoodTypes)
             iterative.Initialize(self.EvaluationLogic, self.SolutionPool)
-            currentSolution = iterative.Run(bestSolution)
+            currentSolution, otherGoodSolutions = iterative.Run(nextSolution)
+            # wenn eine Lösung tabuisiert ist, nimm die nächstbeste Lösung
+            idx = 0
+            while currentSolution in self.TabuList and type(otherGoodSolutions) == "NoneType" and idx < len(otherGoodSolutions):
+                currentSolution = otherGoodSolutions[idx]
+                idx += 1
             if currentSolution not in self.TabuList:
                 self.TabuList.append(deepcopy(currentSolution))
-                if currentSolution.profit > bestSolution.profit or self.aspirationskriterium(currentSolution, bestSolution):
-                    bestSolution = currentSolution
+                nextSolution = currentSolution
+                if currentSolution.profit > self.SolutionPool.GetHighestProfitSolution().profit or self.aspirationskriterium(currentSolution, self.SolutionPool.GetHighestProfitSolution()):
+                    self.SolutionPool.AddSolution(currentSolution)
             iteration += 1
 
-        return bestSolution
+        return self.SolutionPool.GetHighestProfitSolution()

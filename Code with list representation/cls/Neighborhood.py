@@ -4,7 +4,7 @@ from .InputData import InputData
 from .EvaluationLogic import EvaluationLogic
 from .SolutionPool import SolutionPool
 
-from typing import Tuple
+from typing import Tuple, List
 
 class BaseNeighborhood:
     def __init__(self, inputData: InputData, initialAllocation: list, evaluationLogic: EvaluationLogic, solutionPool: SolutionPool):
@@ -57,14 +57,14 @@ class BaseNeighborhood:
                 # abort neighborhood evaluation because an improvement has been found
                 return
 
-    def MakeBestMove(self) -> Solution:
+    def MakeBestMove(self) -> Tuple[Solution, List[Solution]]:
         if len(self.MoveSolutions) > 0:
             self.MoveSolutions.sort(key = lambda solution: solution.profit, reverse = True) # sort solutions according to profit
             bestNeighborhoodSolution = self.MoveSolutions[0]
         else:
             bestNeighborhoodSolution = self.SolutionPool.GetHighestProfitSolution()
 
-        return deepcopy(bestNeighborhoodSolution)
+        return deepcopy(bestNeighborhoodSolution), deepcopy(self.MoveSolutions)
 
     def Update(self, permutation: list) -> None:
         self.Allocation = permutation
@@ -72,7 +72,7 @@ class BaseNeighborhood:
         self.Moves.clear()
         self.MoveSolutions.clear()
 
-    def LocalSearch(self, neighborhoodEvaluationStrategy: str, solution: Solution) -> None:
+    def LocalSearch(self, neighborhoodEvaluationStrategy: str, solution: Solution) -> List[Solution]:
         #bestCurrentSolution = self.SolutionPool.GetLowestMakespanSolution() ## TO.DO: Lösung übergeben?
 
         hasSolutionImproved = True
@@ -82,7 +82,7 @@ class BaseNeighborhood:
             self.DiscoverMoves()
             self.EvaluateMoves(neighborhoodEvaluationStrategy)
 
-            bestNeighborhoodSolution = self.MakeBestMove()
+            bestNeighborhoodSolution, neighboorhoodSolutions = self.MakeBestMove()
 
             if bestNeighborhoodSolution.profit > solution.profit:
                 #print("New best solution has been found!")
@@ -94,6 +94,8 @@ class BaseNeighborhood:
                 solution.profit = bestNeighborhoodSolution.profit
                 solution.earnings = bestNeighborhoodSolution.earnings
                 solution.penalty = bestNeighborhoodSolution.penalty
+
+                return neighboorhoodSolutions
             else:
                 #print(f"Reached local optimum of {self.Type} neighborhood. Stop local search.")
                 hasSolutionImproved = False        
