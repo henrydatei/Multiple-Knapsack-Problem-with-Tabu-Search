@@ -1,7 +1,7 @@
 # Multiple-Knapsack-Problem-with-Tabu-Search
 
 Todo:
-- [ ] Timelimit
+- [x] Timelimit
 - [x] Aspirationskriterium -> Literatur
 - [x] gesamte Nachbarschaft durchprobieren
 
