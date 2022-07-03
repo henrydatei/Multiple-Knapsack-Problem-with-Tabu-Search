@@ -59,10 +59,11 @@ class IterativeImprovement(ImprovementAlgorithm):
         return solution
 
 class TabuSearch(ImprovementAlgorithm):
-    def __init__(self, inputData: InputData, maxSeconds: int, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
+    def __init__(self, inputData: InputData, maxSeconds: int, maxIterations: int, neighborhoodEvaluationStrategy = 'BestImprovement', neighborhoodTypes = ['Swap']):
         super().__init__(inputData, neighborhoodEvaluationStrategy, neighborhoodTypes)
         self.TabuList = []
         self.MaxSeconds = maxSeconds
+        self.MaxIterations = maxIterations
 
     def aspirationskriterium(self, solution: Solution, bestSolution: Solution) -> bool:
         return solution.profit > bestSolution.profit
@@ -71,7 +72,8 @@ class TabuSearch(ImprovementAlgorithm):
         start = datetime.now()
         currentSolution = initialSolution
         bestSolution = self.SolutionPool.GetHighestProfitSolution()
-        while datetime.now() <= start + timedelta(seconds = self.MaxSeconds):
+        iteration = 0
+        while datetime.now() <= start + timedelta(seconds = self.MaxSeconds) and iteration <= self.MaxIterations:
             iterative = IterativeImprovement(self.InputData, self.NeighborhoodEvaluationStrategy, self.NeighborhoodTypes)
             iterative.Initialize(self.EvaluationLogic, self.SolutionPool)
             currentSolution = iterative.Run(bestSolution)
@@ -79,5 +81,6 @@ class TabuSearch(ImprovementAlgorithm):
                 self.TabuList.append(deepcopy(currentSolution))
                 if currentSolution.profit > bestSolution.profit or self.aspirationskriterium(currentSolution, bestSolution):
                     bestSolution = currentSolution
+            iteration += 1
 
         return bestSolution
