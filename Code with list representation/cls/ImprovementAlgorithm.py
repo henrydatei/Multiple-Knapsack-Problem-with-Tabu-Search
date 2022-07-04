@@ -83,7 +83,7 @@ class TabuSearch(ImprovementAlgorithm):
             while currentSolution in self.TabuList and type(otherGoodSolutions) == "NoneType" and idx < len(otherGoodSolutions):
                 currentSolution = otherGoodSolutions[idx]
                 idx += 1
-            if currentSolution not in self.TabuList:
+            if currentSolution not in self.TabuList: # wenn die Lösung nicht tabuisiert ist, füge sie zur TabuListe hinzu
                 self.TabuList.append(deepcopy(currentSolution))
                 nextSolution = currentSolution
                 if currentSolution.profit > self.SolutionPool.GetHighestProfitSolution().profit or self.aspirationskriterium(currentSolution, self.SolutionPool.GetHighestProfitSolution()):
